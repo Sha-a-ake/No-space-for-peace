@@ -25,8 +25,8 @@ def DrawSquare(X1,Y1,X2,Y2):
 def DrawHumie():
     DISPLAY.blit(Humie,((HumieX+1)*24,(HumieY+1)*24))
 
-def RefreshMap():
-    global MAP
+def DrawEnemy(Enemy,x,y):
+    DISPLAY.blit(Enemy,((x+1)*24,(y+1)*24))
     
 pygame.init()
 pygame.display.set_caption('I LIKE TO MOVE IT MOVE IT')
@@ -65,7 +65,7 @@ while True:
                 if MAP[HumieX][HumieY+1][2] == True:
                     HumieY += 1
                     
-                
+            DroidX -= 1    
             DISPLAY.fill(BLACK) 
             t += 1
             
@@ -74,8 +74,8 @@ while True:
             MAP[7][8] = [1,1,False,False,False]
             DISPLAY.blit(WallSpVer,(8*24,9*24))
             print(HumieX,HumieY)
-            RefreshMap()
             
+            DrawEnemy(Droid,DroidX,DroidY)
             
     pygame.display.update()
     FpsClock.tick(FPS)        
