@@ -29,7 +29,7 @@ pygame.display.set_caption('I LIKE TO MOVE IT MOVE IT')
 
 MAP = Gen.Create_Map(16,12)
 #Draw(); 
-DrawSquare(abs(Room[0]),abs(Room[1]),abs(Room[2]),abs(Room[3]))
+
 DrawHumie()
 
 Sq = Func.MakeSquaresInCircle(25,10)
