@@ -16,7 +16,11 @@ BLUE  = (0,0,255)
 
 # Images
 Tile = pygame.image.load('floor.png')
-Humie = pygame.image.load('humie.png')
+HumieLeft = pygame.image.load('humie_left.png')
+HumieRight = pygame.image.load('humie_right.png')
+HumieUp = pygame.image.load('humie_up.png')
+HumieDown = pygame.image.load('humie_down.png')
+Humie = HumieUp
 
 # Windows
 FpsClock = pygame.time.Clock()
