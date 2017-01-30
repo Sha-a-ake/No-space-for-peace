@@ -15,20 +15,22 @@ GREEN = (0,255,0)
 BLUE  = (0,0,255)
 
 # Images
-Tile = pygame.image.load('Level_Models/floor.png')
-WallVer = pygame.image.load('Level_Models/wall_vertical.png')
-WallHor = pygame.image.load('Level_Models/wall_horizontal.png')
-WallSpVer = pygame.image.load('Level_Models/wall_special_vertical.png')
-WallSpHor = pygame.image.load('Level_Models/wall_special_horizontal.png')
-HumieLeft = pygame.image.load('Humie/humie_left.png')
-HumieRight = pygame.image.load('Humie/humie_right.png')
-HumieUp = pygame.image.load('Humie/humie_up.png')
-HumieDown = pygame.image.load('Humie/humie_down.png')
+Tile        = pygame.image.load('Level_Models/floor.png')
+WallVer     = pygame.image.load('Level_Models/wall_vertical.png')
+WallHor     = pygame.image.load('Level_Models/wall_horizontal.png')
+WallSpVer   = pygame.image.load('Level_Models/wall_special_vertical.png')
+WallSpHor   = pygame.image.load('Level_Models/wall_special_horizontal.png')
+HumieLeft   = pygame.image.load('Humie/humie_left.png')
+HumieRight  = pygame.image.load('Humie/humie_right.png')
+HumieUp     = pygame.image.load('Humie/humie_up.png')
+HumieDown   = pygame.image.load('Humie/humie_down.png')
 Humie = HumieUp
+
+
 
 # Windows
 FpsClock = pygame.time.Clock()
-DISP = pygame.display.set_mode((WinX,WinY),0,32)
+DISPLAY = pygame.display.set_mode((WinX,WinY),0,32)
 
 # Game constants
 HumieX = 4; HumieY = 4
