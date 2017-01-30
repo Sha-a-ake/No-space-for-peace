@@ -1,9 +1,9 @@
 # Returns a blank map
 def Create_Map(x,y):
     Map = []
-    for i in range(y):
+    for i in range(x):
         Line = []
-        for j in range(x):
+        for j in range(y):
             # Type,Occupied, Passable, Transparrant, Scouted 
             n = [1,0,True,False,False]
             Line.append(n)
