@@ -2,9 +2,8 @@ import pygame, sys, Gen
 from pygame.locals import *
 from Const import *
 
-
-def draw():
-    x = 10; y = 10
+def Draw():
+    x = 24; y = 24
     for Line in MAP:
         x = 0
         y += TileSize
@@ -12,12 +11,13 @@ def draw():
             x += TileSize
             if X[0] == 1: DISP.blit(Tile, (x,y))
 
+def Draw_Humie():
+    Disp.blit(Humie,(HumieX*24,HumieY*24))
 
 pygame.init()
 pygame.display.set_caption('I LIKE TO MOVE IT MOVE IT')
 
 MAP = Gen.Create_Map(16,12)
-
 
 while True:
     
@@ -27,16 +27,16 @@ while True:
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                xx += 16
+                HumieX += 1
             if event.key == pygame.K_LEFT:
-                xx -= 16
+                HumieX -= 1
             if event.key == pygame.K_UP:
-                yy -= 16
+                HumieY -= 1
             if event.key == pygame.K_DOWN:
-                yy += 16
+                HumieY += 1
                        
             DISP.fill(BLACK) 
-            draw()
+            Draw(); Draw_Humie
             
             
     pygame.display.update()
