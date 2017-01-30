@@ -12,7 +12,7 @@ def Draw():
             if X[0] == 1: DISP.blit(Tile, (x,y))
 
 def Draw_Humie():
-    Disp.blit(Humie,(HumieX*24,HumieY*24))
+    DISP.blit(Humie,(HumieX*24,HumieY*24))
 
 pygame.init()
 pygame.display.set_caption('I LIKE TO MOVE IT MOVE IT')
@@ -36,7 +36,7 @@ while True:
                 HumieY += 1
                        
             DISP.fill(BLACK) 
-            Draw(); Draw_Humie
+            Draw(); Draw_Humie()
             
             
     pygame.display.update()
