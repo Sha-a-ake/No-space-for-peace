@@ -24,10 +24,15 @@ HumieLeft   = pygame.image.load('Humie/humie_left.png')
 HumieRight  = pygame.image.load('Humie/humie_right.png')
 HumieUp     = pygame.image.load('Humie/humie_up.png')
 HumieDown   = pygame.image.load('Humie/humie_down.png')
-Droid       = pygame.image.load('Humie/droid.png')
+DroidLeft   = pygame.image.load('Enemies/Droid/droid_left.png')
+DroidRight  = pygame.image.load('Enemies/Droid/droid_right.png')
+DroidUp     = pygame.image.load('Enemies/Droid/droid_up.png')
+DroidDown   = pygame.image.load('Enemies/Droid/droid_down.png')
+BulletVer   = pygame.image.load('Misc/Bullet/bullet_vertical.png')
+BulletHor   = pygame.image.load('Misc/Bullet/bullet_horizontal.png')
+
+#Start
 Humie = HumieUp
-
-
 
 # Windows
 FpsClock = pygame.time.Clock()
