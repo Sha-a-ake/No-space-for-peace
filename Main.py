@@ -9,9 +9,9 @@ def Draw():
         y += TileSize
         for X in Line:
             x += TileSize
-            if X[0] == 1: DISP.blit(Tile, (x,y))
-            elif X[0] == 2: DISP.blit(WallHor, (x,y))
-            elif X[0] == 3: DISP.blit(WallVer, (x,y))
+            if X[0] == 1: DISPLAY.blit(Tile, (x,y))
+            elif X[0] == 2: DISPLAY.blit(WallHor, (x,y))
+            elif X[0] == 3: DISPLAY.blit(WallVer, (x,y))
                 
 def DrawSquare(X1,Y1,X2,Y2):
     x = X1*24; y = Y1*24
@@ -23,12 +23,15 @@ def DrawSquare(X1,Y1,X2,Y2):
             DISP.blit(Tile, (x,y))
     
 def DrawHumie():
-    DISP.blit(Humie,(HumieX*24,HumieY*24))
+    DISPLAY.blit(Humie,(HumieX*24,HumieY*24))
 
+def RefreshMap():
+    global MAP
+    
 pygame.init()
 pygame.display.set_caption('I LIKE TO MOVE IT MOVE IT')
 
-MAP = Gen.Create_Map(16,12)
+MAP = Gen.Create_Map(20,16)
 #Draw(); 
 
 DrawHumie()
@@ -43,24 +46,35 @@ while True:
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                HumieX += 1
                 Humie = HumieRight
+                if MAP[HumieX+1][HumieY][2] == True:
+                    HumieX += 1
+                    
             if event.key == pygame.K_LEFT:
-                HumieX -= 1
                 Humie = HumieLeft
+                if MAP[HumieX-1][HumieY][2] == True:
+                    HumieX -= 1
+                    
             if event.key == pygame.K_UP:
-                HumieY -= 1
                 Humie = HumieUp
+                if MAP[HumieX][HumieY-1][2] == True:
+                    HumieY -= 1
+                    
             if event.key == pygame.K_DOWN:
-                HumieY += 1
                 Humie = HumieDown
+                if MAP[HumieX][HumieY+1][2] == True:
+                    HumieY += 1
+                    
                 
-            DISP.fill(BLACK) 
+            DISPLAY.fill(BLACK) 
             t += 1
             
-            Draw(); 
+            Draw() 
             DrawHumie()
-            
+            MAP[7][7] = [1,1,False,False,False]
+            DISPLAY.blit(WallSpVer,(7*24,7*24))
+            print(HumieX,HumieY-1)
+            RefreshMap()
             
             
     pygame.display.update()
