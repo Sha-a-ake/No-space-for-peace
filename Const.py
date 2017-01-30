@@ -24,6 +24,7 @@ HumieLeft   = pygame.image.load('Humie/humie_left.png')
 HumieRight  = pygame.image.load('Humie/humie_right.png')
 HumieUp     = pygame.image.load('Humie/humie_up.png')
 HumieDown   = pygame.image.load('Humie/humie_down.png')
+Droid       = pygame.image.load('Humie/droid.png')
 Humie = HumieUp
 
 
@@ -33,4 +34,5 @@ FpsClock = pygame.time.Clock()
 DISPLAY = pygame.display.set_mode((WinX,WinY),0,32)
 
 # Game constants
-HumieX = 4; HumieY = 4
+HumieX = 0; HumieY = 0
+DroidX = 18; DroidY = 6
