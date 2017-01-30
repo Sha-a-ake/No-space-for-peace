@@ -1,10 +1,12 @@
 import pygame, sys
 from pygame.locals import *
 
-pygame.init()
-DSP = pygame.display.set_mode((600,400))
-pygame.display.set_caption('Hello World!')
+FPS = 30
+FpsClock = pygame.time.Clock()
 
+pygame.init()
+DSP = pygame.display.set_mode((600,400),0,32)
+pygame.display.set_caption('I LIKE TO MOVE IT MOVE IT')
 
 # Setting up the colors
 BLACK = (0,0,0)
@@ -13,26 +15,28 @@ RED   = (255,0,0)
 GREEN = (0,255,0)
 BLUE  = (0,0,255)
 
-pygame.draw.polygon(DSP, GREEN, ((146, 0), (291, 106),(236,277),(56, 277),(0,106)))
-pygame.draw.line(DSP, BLUE, (60, 60), (120, 60), 4)
-pygame.draw.line(DSP, BLUE, (120, 60), (60, 120))
-pygame.draw.line(DSP, BLUE, (60, 120), (120, 120), 4)
-pygame.draw.circle(DSP, BLUE, (300, 50), 20, 0)
-pygame.draw.ellipse(DSP, RED, (300, 250, 40, 80), 1)
-pygame.draw.rect(DSP, RED, (200, 150, 100, 50))
+CatImg = pygame.image.load('cat.jpg')
+catx = 10
+caty = 10
+direction = 'right'
 
-pix = pygame.PixelArray(DSP)
-pix[480][380] = BLACK
-pix[482][382] = BLACK
-pix[484][384] = BLACK
-pix[486][386] = BLACK
-pix[488][388] = BLACK
-del pix
+DSP.fill(WHITE)
 
 while True:
+    if direction == 'right':
+        catx += 5
+        if catx == 500:
+            direction = 'left'
+    elif direction == 'left':
+        catx-= 5
+        if catx == 10:
+            direction = 'right'
+    
+    DSP.blit(CatImg,(catx,caty))
+    
     for event in pygame.event.get():
         if event.type == QUIT:
-            pygame.exit()
+            pygame.quit()
             sys.exit()
-        pygame.display.update()
-        
+    pygame.display.update()
+    FpsClock.tick(FPS)        
