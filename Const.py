@@ -16,3 +16,7 @@ BLUE  = (0,0,255)
 
 # Images
 Tile = pygame.image.load('floor.png')
+
+# Windows
+FpsClock = pygame.time.Clock()
+DISP = pygame.display.set_mode((WinX,WinY),0,32)
