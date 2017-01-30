@@ -15,11 +15,12 @@ GREEN = (0,255,0)
 BLUE  = (0,0,255)
 
 # Images
-Tile = pygame.image.load('floor.png')
-HumieLeft = pygame.image.load('humie_left.png')
-HumieRight = pygame.image.load('humie_right.png')
-HumieUp = pygame.image.load('humie_up.png')
-HumieDown = pygame.image.load('humie_down.png')
+Tile = pygame.image.load('Level_Models/floor.png')
+Wall = pygame.image.load('Level_Models/wall.png')
+HumieLeft = pygame.image.load('Humie/humie_left.png')
+HumieRight = pygame.image.load('Humie/humie_right.png')
+HumieUp = pygame.image.load('Humie/humie_up.png')
+HumieDown = pygame.image.load('Humie/humie_down.png')
 Humie = HumieUp
 
 # Windows
