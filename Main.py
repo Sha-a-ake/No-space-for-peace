@@ -1,4 +1,4 @@
-import pygame, sys, Gen
+import pygame, sys, Gen, Func
 from pygame.locals import *
 from Const import *
 
@@ -11,7 +11,10 @@ def Draw():
             x += TileSize
             if X[0] == 1: DISP.blit(Tile, (x,y))
             elif X[0] == 2: DISP.blit(Wall, (x,y))
-
+                
+def Draw_Cords():
+    print()
+    
 def Draw_Humie():
     DISP.blit(Humie,(HumieX*24,HumieY*24))
 
@@ -44,6 +47,7 @@ while True:
             DISP.fill(BLACK) 
             Draw(); Draw_Humie()
             
+            t = Gen.RandomPointInCircle(10)
             
     pygame.display.update()
     FpsClock.tick(FPS)        
