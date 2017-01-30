@@ -1,3 +1,5 @@
+import random,math
+
 def Btw(a,b,c):
     if (a > b > c or a < b < c): return True
     else: return False    
