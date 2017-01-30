@@ -3,12 +3,12 @@ from pygame.locals import *
 from Const import *
 
 def Draw():
-    x = TileSize; y = TileSize
+    x = 0;
     for Line in MAP:
-        x = 0
-        y += TileSize
+        y = 0
+        x += TileSize
         for X in Line:
-            x += TileSize
+            y += TileSize
             if X[0] == 1: DISPLAY.blit(Tile, (x,y))
             elif X[0] == 2: DISPLAY.blit(WallHor, (x,y))
             elif X[0] == 3: DISPLAY.blit(WallVer, (x,y))
@@ -23,7 +23,7 @@ def DrawSquare(X1,Y1,X2,Y2):
             DISP.blit(Tile, (x,y))
     
 def DrawHumie():
-    DISPLAY.blit(Humie,(HumieX*24,HumieY*24))
+    DISPLAY.blit(Humie,((HumieX+1)*24,(HumieY+1)*24))
 
 def RefreshMap():
     global MAP
@@ -71,9 +71,9 @@ while True:
             
             Draw() 
             DrawHumie()
-            MAP[7][7] = [1,1,False,False,False]
-            DISPLAY.blit(WallSpVer,(7*24,7*24))
-            print(HumieX,HumieY-1)
+            MAP[7][8] = [1,1,False,False,False]
+            DISPLAY.blit(WallSpVer,(8*24,9*24))
+            print(HumieX,HumieY)
             RefreshMap()
             
             
