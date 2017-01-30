@@ -18,6 +18,7 @@ pygame.init()
 pygame.display.set_caption('I LIKE TO MOVE IT MOVE IT')
 
 MAP = Gen.Create_Map(16,12)
+Draw(); Draw_Humie()
 
 while True:
     
@@ -28,12 +29,16 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
                 HumieX += 1
+                Humie = HumieRight
             if event.key == pygame.K_LEFT:
                 HumieX -= 1
+                Humie = HumieLeft
             if event.key == pygame.K_UP:
                 HumieY -= 1
+                Humie = HumieUp
             if event.key == pygame.K_DOWN:
                 HumieY += 1
+                Humie = HumieDown
                        
             DISP.fill(BLACK) 
             Draw(); Draw_Humie()
