@@ -1,4 +1,4 @@
-import pygame, sys, Gen, Func
+import pygame, sys, Gen, Func, random
 from pygame.locals import *
 from Const import *
 
@@ -10,7 +10,8 @@ def Draw():
         for X in Line:
             x += TileSize
             if X[0] == 1: DISP.blit(Tile, (x,y))
-            elif X[0] == 2: DISP.blit(Wall, (x,y))
+            elif X[0] == 2: DISP.blit(WallHor, (x,y))
+            elif X[0] == 3: DISP.blit(WallVer, (x,y))
                 
 def DrawSquare(X1,Y1,X2,Y2):
     x = X1*24; y = Y1*24

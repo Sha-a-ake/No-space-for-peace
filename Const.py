@@ -16,7 +16,10 @@ BLUE  = (0,0,255)
 
 # Images
 Tile = pygame.image.load('Level_Models/floor.png')
-Wall = pygame.image.load('Level_Models/wall.png')
+WallVer = pygame.image.load('Level_Models/wall_vertical.png')
+WallHor = pygame.image.load('Level_Models/wall_horizontal.png')
+WallSpVer = pygame.image.load('Level_Models/wall_special_vertical.png')
+WallSpHor = pygame.image.load('Level_Models/wall_special_horizontal.png')
 HumieLeft = pygame.image.load('Humie/humie_left.png')
 HumieRight = pygame.image.load('Humie/humie_right.png')
 HumieUp = pygame.image.load('Humie/humie_up.png')

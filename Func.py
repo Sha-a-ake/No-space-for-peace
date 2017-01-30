@@ -29,6 +29,6 @@ def MakeASquare(Radius):
     
 def MakeSquaresInCircle(Rooms,Radius):
     Sq = []
-    for i in range Rooms:   
+    for i in range(Rooms):   
         Sq.append(MakeASquare(Radius))
     return(Sq)
