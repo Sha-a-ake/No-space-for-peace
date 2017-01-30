@@ -9,9 +9,11 @@ def Draw():
         x += TileSize
         for X in Line:
             y += TileSize
-            if X[0] == 1: DISPLAY.blit(Tile, (x,y))
-            elif X[0] == 2: DISPLAY.blit(WallHor, (x,y))
-            elif X[0] == 3: DISPLAY.blit(WallVer, (x,y))
+            if X[0] == 0: DISPLAY.blit(Tile, (x,y))
+            elif X[0] == 1: DISPLAY.blit(WallHor, (x,y))
+            elif X[0] == 2: DISPLAY.blit(WallVer, (x,y))
+            elif X[0] == 3: DISPLAY.blit(WallSpHor, (x,y))
+            elif X[0] == 4: DISPLAY.blit(WallSpVer, (x,y))
                 
 def DrawSquare(X1,Y1,X2,Y2):
     x = X1*24; y = Y1*24

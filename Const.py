@@ -33,11 +33,12 @@ BulletHor   = pygame.image.load('Misc/Bullet/bullet_horizontal.png')
 
 #Start
 Humie = HumieUp
+Droid = DroidLeft
 
 # Windows
 FpsClock = pygame.time.Clock()
 DISPLAY = pygame.display.set_mode((WinX,WinY),0,32)
 
 # Game constants
-HumieX = 0; HumieY = 0
+HumieX = 1; HumieY = 1
 DroidX = 18; DroidY = 6
