@@ -1,34 +1,31 @@
 import pygame, sys, Gen
 from pygame.locals import *
+from Constants import *
 
-FPS = 30
-FpsClock = pygame.time.Clock()
-TileSize = 24
 
-pygame.init()
-DISP = pygame.display.set_mode((640,480),0,32)
-pygame.display.set_caption('I LIKE TO MOVE IT MOVE IT')
-
-# Setting up the colors
-BLACK = (0,0,0)
-WHITE = (255,255,255)
-RED   = (255,0,0)
-GREEN = (0,255,0)
-BLUE  = (0,0,255)
-Tile = pygame.image.load('floor.png')
-
-MAP = Gen.Create_Map(20,2)
-
-def draw(o,s):
-    x = o; y = s
+def draw():
+    x = 10; y = 10
     for Line in MAP:
-        x = o
+        x = 0
         y += TileSize
         for X in Line:
             x += TileSize
             if X[0] == 1: DISP.blit(Tile, (x,y))
 
-draw(0,0)
+
+
+FpsClock = pygame.time.Clock()
+
+
+
+pygame.init()
+DISP = pygame.display.set_mode((WinX,WinY),0,32)
+pygame.display.set_caption('I LIKE TO MOVE IT MOVE IT')
+
+
+
+MAP = Gen.Create_Map(20,2)
+
 xx = 0; yy = 0
 while True:
     
@@ -47,8 +44,9 @@ while True:
                 yy += 16
                        
             DISP.fill(BLACK) 
-            draw(xx,yy)
+            draw()
             
             
     pygame.display.update()
     FpsClock.tick(FPS)        
+
