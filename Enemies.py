@@ -2,7 +2,7 @@ import pygame
 from Const import * 
 
 class droid:
-    Model = 
+    Model = DroidLeft
     Mode = 'Calm'
     def __init__(self,X,Y):
         self.X = X
@@ -10,14 +10,16 @@ class droid:
         
     def Draw(self):
         global DISPLAY
-        DISPLAY.blit(Model,((x+1)*24,(y+1)*24))    
+        DISPLAY.blit(self.Model,((self.X+1)*24,(self.Y+1)*24))    
         
     def Move(self,TargetX,TargetY):
         if abs(TargetX - self.X) > abs(TargetY - self.Y):
             if TargetX > self.X:
                 self.X += 1
+                self.Model = DroidRight
             elif TargetX < self.X:
                 self.X -= 1
+                self.Model = DroidLeft
             else:
                 if TargetY < Y:
                     self.Mode = 'AttackUp'
@@ -29,8 +31,10 @@ class droid:
         else :
             if TargetY > self.Y:
                 self.Y += 1
-            elif TargetY < self.Y:: 
+                self.Model = DroidDown
+            elif TargetY < self.Y:
                 self.Y -= 1
+                self.Model = DroidUp
             else:
                 if TargetX > X:
                     self.Mode = 'AttackRight'
