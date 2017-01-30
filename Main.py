@@ -3,7 +3,7 @@ from pygame.locals import *
 from Const import *
 
 def Draw():
-    x = Tilesize; y = Tilesize
+    x = TileSize; y = TileSize
     for Line in MAP:
         x = 0
         y += TileSize
@@ -33,11 +33,8 @@ MAP = Gen.Create_Map(16,12)
 
 DrawHumie()
 
-Sq = Func.MakeSquaresInCircle(125,10)
-Sq = Func.TupToLst(Sq)
-Sq = Func.Spread(Sq)
-print(Sq)
 
+t = 1
 while True:
     
     for event in pygame.event.get():
@@ -59,10 +56,9 @@ while True:
                 Humie = HumieDown
                 
             DISP.fill(BLACK) 
-            for Room in Sq:
-                DrawSquare(Room[0]+10,Room[1]+10,Room[2]+10,Room[3]+10)       
+            t += 1
             
-            #Draw(); 
+            Draw(); 
             DrawHumie()
             
             
