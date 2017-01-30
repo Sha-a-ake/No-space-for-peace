@@ -10,6 +10,7 @@ def Draw():
         for X in Line:
             x += TileSize
             if X[0] == 1: DISP.blit(Tile, (x,y))
+            elif X[0] == 2: DISP.blit(Wall, (x,y))
 
 def Draw_Humie():
     DISP.blit(Humie,(HumieX*24,HumieY*24))
