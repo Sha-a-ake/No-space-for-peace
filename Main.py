@@ -1,6 +1,6 @@
 import pygame, sys, Gen
 from pygame.locals import *
-from Constants import *
+from Const import *
 
 
 def draw():
@@ -13,20 +13,12 @@ def draw():
             if X[0] == 1: DISP.blit(Tile, (x,y))
 
 
-
-FpsClock = pygame.time.Clock()
-
-
-
 pygame.init()
-DISP = pygame.display.set_mode((WinX,WinY),0,32)
 pygame.display.set_caption('I LIKE TO MOVE IT MOVE IT')
 
+MAP = Gen.Create_Map(16,12)
 
 
-MAP = Gen.Create_Map(20,2)
-
-xx = 0; yy = 0
 while True:
     
     for event in pygame.event.get():
@@ -49,4 +41,3 @@ while True:
             
     pygame.display.update()
     FpsClock.tick(FPS)        
-
