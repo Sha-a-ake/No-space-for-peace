@@ -1,4 +1,4 @@
-import pygame, sys, Gen, Func, random
+import pygame, sys, Gen, Func, random, Enemies
 from pygame.locals import *
 from Const import *
 
@@ -27,9 +27,7 @@ def DrawSquare(X1,Y1,X2,Y2):
 def DrawHumie():
     DISPLAY.blit(Humie,((HumieX+1)*24,(HumieY+1)*24))
 
-def DrawEnemy(Enemy,x,y):
-    DISPLAY.blit(Enemy,((x+1)*24,(y+1)*24))
-    
+
 pygame.init()
 pygame.display.set_caption('I LIKE TO MOVE IT MOVE IT')
 
@@ -37,7 +35,9 @@ MAP = Gen.Create_Map(20,16)
 #Draw(); 
 
 DrawHumie()
-
+D1 = Enemies.droid(16,7) 
+D2 = Enemies.droid(16,3)
+D3 = Enemies.droid(16,10)
 
 t = 1
 while True:
@@ -66,18 +66,18 @@ while True:
                 Humie = HumieDown
                 if MAP[HumieX][HumieY+1][2] == True:
                     HumieY += 1
-                    
-            DroidX -= 1    
+                        
             DISPLAY.fill(BLACK) 
-            t += 1
+            D1.Move(HumieX,HumieY);D2.Move(HumieX,HumieY);D3.Move(HumieX,HumieY)
             
             Draw() 
             DrawHumie()
+            D1.Draw(); D2.Draw(); D3.Draw()
             MAP[7][8] = [1,1,False,False,False]
             DISPLAY.blit(WallSpVer,(8*24,9*24))
             print(HumieX,HumieY)
             
-            DrawEnemy(Droid,DroidX,DroidY)
+            
             
     pygame.display.update()
     FpsClock.tick(FPS)        
