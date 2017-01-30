@@ -39,20 +39,26 @@ def draw(o,s):
             if X == 0: DISP.blit(Tile, (x,y))
 
 draw(0,0)
-t = 0
+xx = 0; yy = 0
 while True:
     
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-        if event.type == KEYUP:
-            K = pygame.key.get_pressed()
-            t += 15
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                xx += 16
+            if event.key == pygame.K_LEFT:
+                xx -= 16
+            if event.key == pygame.K_UP:
+                yy -= 16
+            if event.key == pygame.K_DOWN:
+                yy += 16
+                       
             DISP.fill(BLACK) 
-            draw(t,0)
+            draw(xx,yy)
             
             
     pygame.display.update()
-    FpsClock.tick(FPS)  
-    DISP.fill(BLACK)      
+    FpsClock.tick(FPS)        
