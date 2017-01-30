@@ -9,5 +9,8 @@ def Create_Map(x,y):
             Line.append(n)
         Map.append(Line)
     return(Map)
+    
+def Make_Level():
+    print()
             
         
