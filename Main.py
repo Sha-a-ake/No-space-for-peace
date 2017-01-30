@@ -36,8 +36,8 @@ MAP = Gen.Create_Map(20,16)
 
 DrawHumie()
 D1 = Enemies.droid(16,7) 
-D2 = Enemies.droid(16,3)
-D3 = Enemies.droid(16,10)
+D2 = Enemies.droid(15,3)
+D3 = Enemies.droid(17,10)
 
 t = 1
 while True:
