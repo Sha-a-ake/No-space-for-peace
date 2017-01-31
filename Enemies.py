@@ -2,8 +2,8 @@ import pygame
 from Const import * 
 
 class droid:
-    Model = PreparedDroidLeft
-    Mode = 'Prepared'
+    Model = DeadDroidLeft
+    Mode = 'Dead'
     def __init__(self,X,Y):
         self.X = X
         self.Y = Y
@@ -16,32 +16,32 @@ class droid:
         if abs(TargetX - self.X) < abs(TargetY - self.Y):
             if TargetX > self.X:
                 self.X += 1
-                self.Model = PreparedDroidRight
+                self.Model = DeadDroidRight
             elif TargetX < self.X:
                 self.X -= 1
-                self.Model = PreparedDroidLeft
+                self.Model = DeadDroidLeft
             else:
                 if TargetY < self.Y:
                     self.Mode = 'AttackUp'
-                    self.Model = PreparedDroidUp
+                    self.Model = DeadDroidUp
                 else:
                     self.Mode = 'AttackDown'
-                    self.Model = PreparedDroidDown
+                    self.Model = DeadDroidDown
             
         else :
             if TargetY > self.Y:
                 self.Y += 1
-                self.Model = PreparedDroidDown
+                self.Model = DeadDroidDown
             elif TargetY < self.Y:
                 self.Y -= 1
-                self.Model = PreparedDroidUp
+                self.Model = DeadDroidUp
             else:
                 if TargetX > self.X:
                     self.Mode = 'AttackRight'
-                    self.Model = PreparedDroidRight
+                    self.Model = DeadDroidRight
                 else:
                     self.Mode = 'AttackLeft'
-                    self.Model = PreparedDroidLeft
+                    self.Model = DeadDroidLeft
                 
                 
                 

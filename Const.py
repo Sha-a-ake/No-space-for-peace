@@ -159,6 +159,11 @@ PreparedDroidRight      = pygame.image.load('Enemies/Droid/Prepared/droid_right.
 PreparedDroidUp         = pygame.image.load('Enemies/Droid/Prepared/droid_up.png')
 PreparedDroidDown       = pygame.image.load('Enemies/Droid/Prepared/droid_down.png')
 
+DeadDroidLeft       = pygame.image.load('Enemies/Droid/Dead/droid_left.png')
+DeadDroidRight      = pygame.image.load('Enemies/Droid/Dead/droid_right.png')
+DeadDroidUp         = pygame.image.load('Enemies/Droid/Dead/droid_up.png')
+DeadDroidDown       = pygame.image.load('Enemies/Droid/Dead/droid_down.png')
+
 BulletVer       = pygame.image.load('Misc/Bullet/bullet_vertical.png')
 BulletHor       = pygame.image.load('Misc/Bullet/bullet_horizontal.png')
 

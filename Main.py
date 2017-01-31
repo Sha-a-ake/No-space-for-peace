@@ -44,19 +44,32 @@ while True:
             DISPLAY.fill(BLACK) 
             D1.Move(HumieX,HumieY);D2.Move(HumieX,HumieY);D3.Move(HumieX,HumieY)
             
+            MAP[7][8] = [1,1,False,False,False]
+            DISPLAY.blit(HGONDown,(8*24,9*24))
+            MAP[7][9] = [1,1,True,False,False]
+            DISPLAY.blit(DGONVer,(8*24,10*24))
+            MAP[7][10] = [1,1,True,False,False]
+            DISPLAY.blit(DGONVer,(8*24,11*24))
+            MAP[7][11] = [1,1,True,False,False]
+            DISPLAY.blit(DGONVer,(8*24,12*24))
+            MAP[7][12] = [1,1,False,False,False]
+            DISPLAY.blit(HGONUp,(8*24,13*24))
+            
+            MAP[8][8] = [1,1,False,False,False]
+            DISPLAY.blit(HGCNDown,(9*24,9*24))
+            MAP[8][9] = [1,1,False,False,False]
+            DISPLAY.blit(DGCNVer,(9*24,10*24))
+            MAP[8][10] = [1,1,False,False,False]
+            DISPLAY.blit(DGCNVer,(9*24,11*24))
+            MAP[8][11] = [1,1,False,False,False]
+            DISPLAY.blit(DGCNVer,(9*24,12*24))
+            MAP[8][12] = [1,1,False,False,False]
+            DISPLAY.blit(HGCNUp,(9*24,13*24))
+            
             Draw.Map(MAP) 
             Draw.Model(Humie,HumieX,HumieY)
             D1.Draw(); D2.Draw(); D3.Draw()
-            MAP[7][8] = [1,1,False,False,False]
-            DISPLAY.blit(HUONDown,(8*24,9*24))
-            MAP[7][9] = [1,1,False,False,False]
-            DISPLAY.blit(DUONVer,(8*24,10*24))
-            MAP[7][10] = [1,1,False,False,False]
-            DISPLAY.blit(DUONVer,(8*24,11*24))
-            MAP[7][11] = [1,1,False,False,False]
-            DISPLAY.blit(DUONVer,(8*24,12*24))
-            MAP[7][12] = [1,1,False,False,False]
-            DISPLAY.blit(HUONUp,(8*24,13*24))
+            
             print(HumieX,HumieY)
             
             
