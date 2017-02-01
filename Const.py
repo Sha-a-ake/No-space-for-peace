@@ -15,7 +15,11 @@ GREEN = (0,255,0)
 BLUE  = (0,0,255)
 
 # Room
-Tile             = pygame.image.load('Level_Models/Floors/floor.png')
+
+Floor            = pygame.image.load('Level_Models/Floors/floor.png')
+Plate            = pygame.image.load('Level_Models/Floors/plate.png')
+Lattice          = pygame.image.load('Level_Models/Floors/floor_lattice.png')
+
 
 WallVerLeft      = pygame.image.load('Level_Models/Walls/wall_vertical_left.png')
 WallVerRight     = pygame.image.load('Level_Models/Walls/wall_vertical_right.png')

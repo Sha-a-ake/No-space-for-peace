@@ -29,7 +29,7 @@ def Map(MAP):
         x += TileSize
         for X in Line:
             y += TileSize
-            if X[0] == 0: DISPLAY.blit(Tile, (x,y))
+            if X[0] == 0: DISPLAY.blit(Floor, (x,y))
             elif X[0] == 11: DISPLAY.blit(WallHorTop, (x,y))
             elif X[0] == 12: DISPLAY.blit(WallHorBottom, (x,y))
             elif X[0] == 21: DISPLAY.blit(WallVerLeft, (x,y))

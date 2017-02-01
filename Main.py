@@ -13,7 +13,6 @@ D1 = Enemies.droid(16,7)
 D2 = Enemies.droid(15,3)
 D3 = Enemies.droid(17,10)
 
-t = 1
 while True:
     
     for event in pygame.event.get():
@@ -39,10 +38,13 @@ while True:
             if event.key == pygame.K_DOWN:
                 Humie = HumieDown
                 if MAP[HumieX][HumieY+1][2] == True:
-                    HumieY += 1
-                        
-            DISPLAY.fill(BLACK) 
+                    HumieY += 1           
+            
             D1.Move(HumieX,HumieY);D2.Move(HumieX,HumieY);D3.Move(HumieX,HumieY)
+            DISPLAY.fill(BLACK) 
+            
+            MAP[6][6] = [1,1,True,False,False]
+            DISPLAY.blit(Lattice,(7*24,7*24))
             
             MAP[7][8] = [1,1,False,False,False]
             DISPLAY.blit(HGONDown,(8*24,9*24))
