@@ -1,6 +1,7 @@
-# Returns a blank map
+import Config as C
+
 def Create_Map(x,y):
-    Map = []
+    C.Map = []
     for i in range(x):
         Line = []
         for j in range(y):
@@ -55,10 +56,5 @@ def Create_Map(x,y):
                 n = [0,0,True,False,False]                                
                 
             Line.append(n)
-        Map.append(Line)
-    return(Map)
-    
-def Make_Level():
-    print()
-            
+        C.Map.append(Line)
         
