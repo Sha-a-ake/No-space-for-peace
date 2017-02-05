@@ -3,17 +3,31 @@ import Config as C
 from pygame.locals import *
 from Const import *
 from Images import *
+from random import randint
 
 pygame.init()
 C.init()
 
 # --- To remove later --- #
-Gen.Create_Map(20,16)
+AreaX = 20; AreaY = 16
+Gen.Create_Map(AreaX, AreaY)
 Draw.Map(); 
 Draw.Model(Humie,HumieX,HumieY)
-D1 = Enemies.droid(16,7) 
-D2 = Enemies.droid(15,3)
-D3 = Enemies.droid(17,10)
+
+def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy in x,y
+    if EnemyType == 'Droid':
+        Enemy = Enemies.droid
+        while True:
+            if C.Map[x][y][2]:
+                C.Bots.append(Enemy(x,y))
+                C.Map[x][y][2] = False
+                break
+            else:
+                x = randint(0,AreaX-1)
+                y = randint(0,AreaY-1)            
+        
+for k in range(10):
+    Spawn('Droid')
 
 # Main game loop
 while True:
@@ -44,8 +58,11 @@ while True:
                 if C.Map[HumieX][HumieY+1][2] == True:
                     HumieY += 1         
                     
-        # Calculating enviroment reaction                    
-        D1.Move(HumieX,HumieY);D2.Move(HumieX,HumieY);D3.Move(HumieX,HumieY)
+        # Calculating enviroment reaction  
+                          
+        for Bot in C.Bots:
+            Bot.Move(HumieX, HumieY)
+            
         
         DISPLAY.fill(BLACK) 
         
@@ -61,8 +78,8 @@ while True:
         DISPLAY.blit(DGONVer,(8*24,11*24))
         C.Map[7][11] = [1,1,True,False,False]
         DISPLAY.blit(DGONVer,(8*24,12*24))
-        #C.Map[7][12] = [1,1,False,False,False]
-        #DISPLAY.blit(HGONUp,(8*24,13*24))
+        C.Map[7][12] = [1,1,False,False,False]
+        DISPLAY.blit(HGONUp,(8*24,13*24))
         
          
         C.Map[8][8] = [1,1,False,False,False]
@@ -79,7 +96,9 @@ while True:
         
         Draw.Map() 
         Draw.Model(Humie,HumieX,HumieY)
-        D1.Draw(); D2.Draw(); D3.Draw()
+        
+        for Bot in C.Bots:
+            Bot.Draw()
     
     pygame.display.update()
     FpsClock.tick(FPS) 
