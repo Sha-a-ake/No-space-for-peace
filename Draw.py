@@ -1,4 +1,5 @@
 import pygame
+import Config as C
 from Const import *
 """
             Type status:
@@ -22,9 +23,9 @@ from Const import *
             
 """
 
-def Map(MAP):
+def Map():
     x = 0;
-    for Line in MAP:
+    for Line in C.Map:
         y = 0
         x += TileSize
         for X in Line:
