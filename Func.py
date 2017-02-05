@@ -34,5 +34,32 @@ def MakeSquaresInCircle(Rooms,Radius):
         Sq.append(MakeASquare(Radius))
     return(Sq)
     
-
+    
+def FindPath(Map,x1,y1,x2,y2):
+    Open = []
+    Close = []
+    Open.append(((x1,y1),0))
+    # --- Needs optimization --- # 
+    while True:
+        UsedCords = []; OpenCords = []
+        for i in range(len(Close)):
+            UsedCords.append(Close[i][0])
+        for i in range(1,len(Open)):
+            OpenCords.append(Open[i][0])
+            
+        x = Open[0][0][0]; y = Open[0][0][1]; n = Open[0][1]
+        
+        if C.Map[x+1][y][2] and (x+1,y) not in UsedCords and (x+1,y) not in OpenCords:
+            Open.append((x+1,y,n+1))
+            
+        #elif (x+1,y) in OpenCords and True:
+            
+        if C.Map[x-1][y][2] and (x-1,y) not in UsedCords and (x-1,y) not in OpenCords:
+            Open.append((x-1,y,n+1))
+            
+        if C.Map[x][y+1][2] and (x,y+1) not in UsedCords and (x,y+1) not in OpenCords:
+            Open.append((x,y+1,n+1))
+            
+        if C.Map[x][y-1][2] and (x,y-1) not in UsedCords and (x,y-1) not in OpenCords:
+            Open.append((x,y-1,n+1))
     
