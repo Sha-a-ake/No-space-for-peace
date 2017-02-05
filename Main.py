@@ -14,6 +14,7 @@ Gen.Create_Map(AreaX, AreaY)
 Draw.Map(); 
 Draw.Model(Humie,HumieX,HumieY)
 
+# Create an enemy of chosen type
 def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy in x,y
     if EnemyType == 'Droid':
         Enemy = Enemies.droid
@@ -25,7 +26,8 @@ def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy 
             else:
                 x = randint(0,AreaX-1)
                 y = randint(0,AreaY-1)            
-        
+
+# Creating a bunch oh enemies for testing                
 for k in range(10):
     Spawn('Droid')
 
@@ -62,11 +64,10 @@ while True:
                           
         for Bot in C.Bots:
             Bot.Move(HumieX, HumieY)
-        #123
         
         DISPLAY.fill(BLACK) 
         
-        #Drawing things
+        #Drawing things (For testing. Useless right now)
         C.Map[6][6] = [1,1,True,False,False]
         DISPLAY.blit(Lattice,(7*24,7*24))
             
@@ -92,8 +93,8 @@ while True:
         DISPLAY.blit(DGCNVer,(9*24,12*24))
         C.Map[8][12] = [1,1,False,False,False]
         DISPLAY.blit(HGCNUp,(9*24,13*24))
-       
         
+        # Drawing things
         Draw.Map() 
         Draw.Model(Humie,HumieX,HumieY)
         
