@@ -1,4 +1,10 @@
 import pygame
+
+# Test
+
+GreenCell   = pygame.image.load('Level_Models/Test/green.png')
+OrangeCell  = pygame.image.load('Level_Models/Test/orange.png')
+RedCell     = pygame.image.load('Level_Models/Test/red.png')
 # Room
 
 Floor            = pygame.image.load('Level_Models/Floors/floor.png')
