@@ -57,7 +57,22 @@ while True:
             if event.key == pygame.K_DOWN:
                 Humie = HumieDown
                 if C.Map[HumieX][HumieY+1][2] == True and C.Map[HumieX][HumieY+1][3] == True:
-                    HumieY += 1         
+                    HumieY += 1 
+            if event.key == pygame.K_a:
+                print('Aaaaaa')
+                if Humie == HumieRight:
+                    print('!!!')
+                    for Bot in C.Bots:
+                        Bot.GetHit(HumieX-1,HumieY,10)
+                elif Humie == HumieLeft:
+                    for Bot in C.Bots:
+                        Bot.GetHit(HumieX+1,HumieY,10)
+                elif Humie == HumieUp:
+                    for Bot in C.Bots:
+                        Bot.GetHit(HumieX,HumieY-1,10)
+                else:
+                    for Bot in C.Bots:
+                        Bot.GetHit(HumieX,HumieY+1,10)        
                     
         # Calculating enviroment reaction  
                           
@@ -68,7 +83,7 @@ while True:
         
         # Drawing things
         Draw.Map() 
-        Draw.WalkMap()
+        #Draw.WalkMap()
         Draw.Model(Humie,HumieX,HumieY)
         
         print(HumieX,HumieY)
