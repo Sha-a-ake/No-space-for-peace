@@ -68,16 +68,16 @@ while True:
                     HumieY += 1 
             if event.key == pygame.K_SPACE:
                 Move = True
-                if True:
+                if Humie == HumieLeft:
                     for Bot in C.Bots:
                         Bot.GetHit(HumieX-1,HumieY,10)
-                if True:
+                if Humie == HumieRight:
                     for Bot in C.Bots:
                         Bot.GetHit(HumieX+1,HumieY,10)
-                if True == HumieUp:
+                if Humie == HumieUp:
                     for Bot in C.Bots:
                         Bot.GetHit(HumieX,HumieY-1,10)
-                if True :
+                if Humie == HumieDown:
                     for Bot in C.Bots:
                         Bot.GetHit(HumieX,HumieY+1,10)
         
