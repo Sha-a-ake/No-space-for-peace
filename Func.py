@@ -35,31 +35,135 @@ def MakeSquaresInCircle(Rooms,Radius):
     return(Sq)
     
     
+##def FindPath(Map,x1,y1,x2,y2):
+##    Open = []
+##    Close = []
+##    Open.append(((x1,y1),0))
+##    # --- Needs optimization --- # 
+##    while True:
+##        UsedCords = []; OpenCords = []
+##        for i in range(len(Close)):
+##            UsedCords.append(Close[i][0])
+##        for i in range(1,len(Open)):
+##            OpenCords.append(Open[i][0])
+##            
+##        x = Open[0][0][0]; y = Open[0][0][1]; n = Open[0][1]
+##        
+##        if C.Map[x+1][y][2] and (x+1,y) not in UsedCords and (x+1,y) not in OpenCords:
+##            Open.append((x+1,y,n+1))
+##            
+##        #elif (x+1,y) in OpenCords and True:
+##            
+##        if C.Map[x-1][y][2] and (x-1,y) not in UsedCords and (x-1,y) not in OpenCords:
+##            Open.append((x-1,y,n+1))
+##            
+##        if C.Map[x][y+1][2] and (x,y+1) not in UsedCords and (x,y+1) not in OpenCords:
+##            Open.append((x,y+1,n+1))
+##            
+##        if C.Map[x][y-1][2] and (x,y-1) not in UsedCords and (x,y-1) not in OpenCords:
+##            Open.append((x,y-1,n+1))
+    
 def FindPath(Map,x1,y1,x2,y2):
-    Open = []
-    Close = []
-    Open.append(((x1,y1),0))
-    # --- Needs optimization --- # 
-    while True:
-        UsedCords = []; OpenCords = []
-        for i in range(len(Close)):
-            UsedCords.append(Close[i][0])
-        for i in range(1,len(Open)):
-            OpenCords.append(Open[i][0])
-            
-        x = Open[0][0][0]; y = Open[0][0][1]; n = Open[0][1]
+    Y = len(Map)
+    X = len(Map[0])
+    A = []
+    List = []
+    for i in range(Y):
+        A.append(['0'])
+        for j in range(X):
+            A[i].append('-')
+
+    for i in range(Y):
+        for j in range(X):
+            if Map[i][j][2] == True:
+                A[i][j] = '0'
+            elif Map[i][j][2] == False:
+                A[i][j] = '|'
+    
+    y = x1
+    x = y1
+    A[y][x] = '1'
+    A[x2][y2] = 'X'
+
+    #Поиск
+    List.append((y,x))
+    for i in List:
+        y,x = i[0],i[1]
+        if A[y-1][x] == 'X':
+            A[y-1][x] = str(int(A[y][x])+1)
+            List = []
+            List.append((y-1,x))
+            y,x = y-1,x
+            break
+        if A[y][x-1] == 'X':
+            A[y][x-1] = str(int(A[y][x])+1)
+            List = []
+            List.append((y,x-1))
+            y,x = y,x-1
+            break
+        if A[y+1][x] == 'X':
+            A[y+1][x] = str(int(A[y][x])+1)
+            List = []
+            List.append((y+1,x))
+            y,x = y+1,x
+            break
+        if A[y][x+1] == 'X':
+            A[y][x+1] = str(int(A[y][x])+1)
+            List = []
+            List.append((y,x+1))
+            y,x = y,x+1
+            break
         
-        if C.Map[x+1][y][2] and (x+1,y) not in UsedCords and (x+1,y) not in OpenCords:
-            Open.append((x+1,y,n+1))
+        if A[y-1][x] == '0' and y-1 >= 0: #up
+            A[y-1][x] = str(int(A[y][x])+1)
+            List.append((y-1,x))
+        if A[y][x-1] == '0' and x-1 >= 0: #left
+            A[y][x-1] = str(int(A[y][x])+1)
+            List.append((y,x-1))
+        if A[y+1][x] == '0' and y+1 <= Y+1: #down
+            A[y+1][x] = str(int(A[y][x])+1)
+            List.append((y+1,x))
+        if A[y][x+1] == '0' and x+1 <= X+1: #right
+            A[y][x+1] = str(int(A[y][x])+1)
+            List.append((y,x+1))
+    else:
+        return("No Path")
+        
+    # Восстановление
+    for i in List:
+        if A[y-1][x] == '1':
+            List.append((y-1,x))
+            break
+        if A[y][x-1] == '1':
+            List.append((y,x-1))
+            break
+        if A[y+1][x] == '1':
+            List.append((y+1,x))
+            break
+        if A[y][x+1] == '1':
+            List.append((y,x+1))
+            break
+        
+        if A[y-1][x] == str(int(A[y][x])-1):
+            List.append((y-1,x))
+            y,x = y-1,x
+        if A[y][x-1] == str(int(A[y][x])-1):
+            List.append((y,x-1))
+            y,x = y,x-1
+        if A[y+1][x] == str(int(A[y][x])-1):
+            List.append((y+1,x))
+            y,x = y+1,x
+        if A[y][x+1] == str(int(A[y][x])-1):
+            List.append((y,x+1))
+            y,x = y,x+1  
+    List.reverse()   
             
-        #elif (x+1,y) in OpenCords and True:
-            
-        if C.Map[x-1][y][2] and (x-1,y) not in UsedCords and (x-1,y) not in OpenCords:
-            Open.append((x-1,y,n+1))
-            
-        if C.Map[x][y+1][2] and (x,y+1) not in UsedCords and (x,y+1) not in OpenCords:
-            Open.append((x,y+1,n+1))
-            
-        if C.Map[x][y-1][2] and (x,y-1) not in UsedCords and (x,y-1) not in OpenCords:
-            Open.append((x,y-1,n+1))
+##    # Вывод для отладки
+##    for i in List:
+##        A[i[0]][i[1]] = '+'
+##    print()
+##    for i in A:
+##        print(i)
+##
+    return(List[1])
     
