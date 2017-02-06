@@ -35,6 +35,7 @@ while True:
     
     # Checking for player actions
     for event in pygame.event.get():
+        
         Move = False # if True, activates move
         if event.type == QUIT:
             pygame.quit()
@@ -78,19 +79,19 @@ while True:
                         Bot.GetHit(HumieX,HumieY-1,10)
                 if True :
                     for Bot in C.Bots:
-                        Bot.GetHit(HumieX,HumieY+1,10)        
-           
+                        Bot.GetHit(HumieX,HumieY+1,10)
+        
+        
         # Calculating enviroment reaction  
-                          
+        if Move == False: continue                  
         for Bot in C.Bots:
-            if Move == True:
                 Bot.Move(HumieX, HumieY)
         
         DISPLAY.fill(BLACK) 
         
         # Drawing things
         Draw.Map() 
-        Draw.WalkMap()
+        #Draw.WalkMap()
         for Bot in C.Bots:
             Bot.Draw()
         Draw.Model(Humie,HumieX,HumieY)
