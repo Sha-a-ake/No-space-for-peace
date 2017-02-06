@@ -40,6 +40,17 @@ def Map():
             elif X[0] == 41: DISPLAY.blit(WallCornerBL, (x,y))
             elif X[0] == 42: DISPLAY.blit(WallCornerBR, (x,y))
             
+def WalkMap():
+    x = 0;
+    for Line in C.Map:
+        y = 0
+        x += TileSize
+        for X in Line:
+            y += TileSize
+            if   X[2] == False: DISPLAY.blit(RedCell, (x,y))
+            elif X[3] == False: DISPLAY.blit(OrangeCell, (x,y))
+            else:               DISPLAY.blit(GreenCell, (x,y))
+            
             
 def Model(Humie,x,y):
     DISPLAY.blit(Humie,((x+1)*24,(y+1)*24))
