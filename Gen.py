@@ -53,7 +53,7 @@ def Create_Map(x,y):
                     n = [12,0,False,False,False]
             
             else:
-                n = [0,0,True,False,False]                                
+                n = [0,0,True,True,False]                                
                 
             Line.append(n)
         C.Map.append(Line)
