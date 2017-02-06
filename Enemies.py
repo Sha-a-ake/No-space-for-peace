@@ -1,5 +1,6 @@
 import pygame
 from Const import * 
+import Config as C
 
 class droid:
     Model = CalmDroidLeft
@@ -13,6 +14,7 @@ class droid:
         DISPLAY.blit(self.Model,((self.X+1)*24,(self.Y+1)*24))    
         
     def Move(self,TargetX,TargetY):
+        C.Map[self.X][self.Y][2] = True
         if abs(TargetX - self.X) < abs(TargetY - self.Y):
             if TargetX > self.X:
                 self.X += 1
@@ -42,6 +44,7 @@ class droid:
                 else:
                     self.Mode = 'AttackLeft'
                     self.Model = CalmDroidLeft
+        C.Map[self.X][self.Y][2] = False        
                 
                 
                 
