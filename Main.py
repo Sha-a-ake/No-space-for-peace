@@ -32,34 +32,41 @@ for k in range(10):
 
 # Main game loop
 while True:
+    
     # Checking for player actions
     for event in pygame.event.get():
+        Move = False # if True, activates move
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
         # Movement
         if event.type == pygame.KEYDOWN:
+            
             if event.key == pygame.K_RIGHT:
+                Move = True
                 Humie = HumieRight
                 if C.Map[HumieX+1][HumieY][2] == True and C.Map[HumieX+1][HumieY][3] == True:
                     HumieX += 1
                     
             if event.key == pygame.K_LEFT:
+                Move = True
                 Humie = HumieLeft
                 if C.Map[HumieX-1][HumieY][2] == True and C.Map[HumieX-1][HumieY][3] == True:
                     HumieX -= 1
                     
             if event.key == pygame.K_UP:
+                Move = True
                 Humie = HumieUp
                 if C.Map[HumieX][HumieY-1][2] == True and C.Map[HumieX][HumieY-1][3] == True:
                     HumieY -= 1
                     
             if event.key == pygame.K_DOWN:
+                Move = True
                 Humie = HumieDown
                 if C.Map[HumieX][HumieY+1][2] == True and C.Map[HumieX][HumieY+1][3] == True:
                     HumieY += 1 
             if event.key == pygame.K_SPACE:
-
+                Move = True
                 if True:
                     for Bot in C.Bots:
                         Bot.GetHit(HumieX-1,HumieY,10)
@@ -72,23 +79,24 @@ while True:
                 if True :
                     for Bot in C.Bots:
                         Bot.GetHit(HumieX,HumieY+1,10)        
-                    
+           
         # Calculating enviroment reaction  
                           
         for Bot in C.Bots:
-            Bot.Move(HumieX, HumieY)
+            if Move == True:
+                Bot.Move(HumieX, HumieY)
         
         DISPLAY.fill(BLACK) 
         
         # Drawing things
         Draw.Map() 
-        #Draw.WalkMap()
+        Draw.WalkMap()
         for Bot in C.Bots:
             Bot.Draw()
         Draw.Model(Humie,HumieX,HumieY)
         
         print(HumieX,HumieY)
-        
+         
         
     
     pygame.display.update()
