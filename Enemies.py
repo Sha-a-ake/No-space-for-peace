@@ -48,17 +48,18 @@ class droid:
                         self.Model = CalmDroidLeft
             C.Map[self.X][self.Y][3] = False    
         
-        def Die(self):
-            Mode = 'dead'
-            self.Model = DeadDroidLeft
-            C.Map[x][y][3] = True
+    def Die(self):
+        print('I died for your sins')
+        self.Mode = 'dead'
+        self.Model = DeadDroidLeft
+        C.Map[self.X][self.Y][3] = True
         
-        def GetHit(self,x,y,power):
-            if self.X == x and self.Y == y:
-                print('Getting Hit!')
-                self.Hp -= power
-                if self.Hp <= 0:
-                    self.Die()   
+    def GetHit(self,x,y,power):
+        if self.X == x and self.Y == y:
+            print('Getting Hit! Hp =', self.Hp)
+            self.Hp -= power
+            if self.Hp <= 0:
+               self.Die()   
                 
                 
                 
