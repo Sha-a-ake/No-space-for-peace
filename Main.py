@@ -28,7 +28,7 @@ def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy 
 
 # Creating a bunch oh enemies for testing                
 for k in range(10):
-    Spawn('Droid')
+    Spawn('Droid', k+2,k+2)
 
 # Main game loop
 while True:
@@ -58,19 +58,18 @@ while True:
                 Humie = HumieDown
                 if C.Map[HumieX][HumieY+1][2] == True and C.Map[HumieX][HumieY+1][3] == True:
                     HumieY += 1 
-            if event.key == pygame.K_a:
-                print('Aaaaaa')
-                if Humie == HumieRight:
-                    print('!!!')
+            if event.key == pygame.K_SPACE:
+
+                if True:
                     for Bot in C.Bots:
                         Bot.GetHit(HumieX-1,HumieY,10)
-                elif Humie == HumieLeft:
+                if True:
                     for Bot in C.Bots:
                         Bot.GetHit(HumieX+1,HumieY,10)
-                elif Humie == HumieUp:
+                if True == HumieUp:
                     for Bot in C.Bots:
                         Bot.GetHit(HumieX,HumieY-1,10)
-                else:
+                if True :
                     for Bot in C.Bots:
                         Bot.GetHit(HumieX,HumieY+1,10)        
                     
@@ -84,12 +83,13 @@ while True:
         # Drawing things
         Draw.Map() 
         #Draw.WalkMap()
+        for Bot in C.Bots:
+            Bot.Draw()
         Draw.Model(Humie,HumieX,HumieY)
         
         print(HumieX,HumieY)
         
-        for Bot in C.Bots:
-            Bot.Draw()
+        
     
     pygame.display.update()
     FpsClock.tick(FPS) 
