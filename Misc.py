@@ -6,6 +6,7 @@ import Config as C
 
 class bullet:
     Model = BulletHor
+    
     def __init__(self,x,y,direction,power):
         self.x = x
         self.y = y
@@ -13,11 +14,11 @@ class bullet:
         self.power = power
         
     def Move(self):
-        if direction == 'up':
+        if self.direction == 'up':
             self.y -= 1
-        elif direction == 'down':
+        elif self.direction == 'down':
             self.y += 1
-        elif direction == 'right':
+        elif self.direction == 'right':
             self.x += 1
         else:
             self.x -= 1
