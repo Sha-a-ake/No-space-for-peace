@@ -1,4 +1,4 @@
-import pygame
+import pygame, Misc
 from Const import * 
 import Config as C
 
@@ -14,6 +14,10 @@ class droid:
         global DISPLAY
         DISPLAY.blit(self.Model,((self.X+1)*24,(self.Y+1)*24))    
         
+    def Attack(self, direction):
+        Bullet = Misc.bullet
+        C.Misc.append(Bullet(self.X,self.Y,direction,10))    
+        
     def Move(self,TargetX,TargetY):
         if self.Mode != 'dead':
             C.Map[self.X][self.Y][3] = True
@@ -26,10 +30,10 @@ class droid:
                     self.Model = CalmDroidLeft
                 else:
                     if TargetY < self.Y:
-                        self.Mode = 'AttackUp'
+                        self.Attack('up')
                         self.Model = CalmDroidUp
                     else:
-                        self.Mode = 'AttackDown'
+                        self.Attack('down')
                         self.Model = CalmDroidDown
             
             else :
@@ -41,10 +45,10 @@ class droid:
                     self.Model = CalmDroidUp
                 else:
                     if TargetX > self.X:
-                        self.Mode = 'AttackRight'
+                        self.Attack('right')
                         self.Model = CalmDroidRight
                     else:
-                        self.Mode = 'AttackLeft'
+                        self.Attack('left')
                         self.Model = CalmDroidLeft
             C.Map[self.X][self.Y][3] = False    
         
