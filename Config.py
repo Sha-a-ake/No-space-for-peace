@@ -4,3 +4,5 @@ def init():
     Map = []
     global Bots
     Bots = []
+    global Misc
+    Misc = []
