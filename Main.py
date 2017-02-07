@@ -114,8 +114,9 @@ def Loop():
             for Bot in C.Bots:
                     Bot.Move(HumieX, HumieY)
             for Misc in C.Misc:
-                Misc.Move()
-            C.Misc[0].Move()
+            Misc.Move()
+            if Misc.Alive == False:
+                C.Misc.remove(Misc)
             
             DISPLAY.fill(BLACK) 
             
