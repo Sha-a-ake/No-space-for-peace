@@ -1,4 +1,4 @@
-import pygame, sys, Draw, Enemies, Func, Gen
+import pygame, sys, Draw, Enemies, Func, Gen, Misc
 import Config as C
 from pygame.locals import *
 from Const import *
@@ -13,6 +13,11 @@ AreaX = 20; AreaY = 16
 Gen.Create_Map(AreaX, AreaY)
 Draw.Map(); 
 Draw.Model(Humie,HumieX,HumieY)
+
+# Bullet testing
+Bullet = Misc.bullet
+for i in range(8):    
+    C.Misc.append(Bullet(i+4,i+3,'down',10))
 
 # Create an enemy of chosen type
 def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy in x,y
@@ -86,6 +91,9 @@ while True:
         if Move == False: continue                  
         for Bot in C.Bots:
                 Bot.Move(HumieX, HumieY)
+        for Misc in C.Misc:
+            Misc.Move()
+        C.Misc[0].Move()
         
         DISPLAY.fill(BLACK) 
         
@@ -95,7 +103,9 @@ while True:
         for Bot in C.Bots:
             Bot.Draw()
         Draw.Model(Humie,HumieX,HumieY)
-        
+        for Misc in C.Misc:
+            Misc.Draw()
+            
         print(HumieX,HumieY)
          
         
