@@ -5,7 +5,6 @@ from Const import *
 import Config as C
 
 class bullet:
-    Model = BulletHor
     Alive = True
     
     def __init__(self,x,y,direction,power):
@@ -13,6 +12,8 @@ class bullet:
         self.y = y
         self.direction = direction
         self.power = power
+        if direction == 'right' or direction == 'left': self.Model = BulletHor
+        if direction == 'up' or direction == 'down': self.Model = BulletVer
     
     def Impact(self):
         if   C.Map[self.x][self.y][2] == False: self.Alive = False
@@ -29,7 +30,7 @@ class bullet:
              self.x += 1
         else:
              self.x -= 1
-        print(self.x,self.y)
+        print('Cords',self.x,self.y)
         self.Impact()
             
     def Draw(self):
