@@ -91,9 +91,11 @@ while True:
         if Move == False: continue                  
         for Bot in C.Bots:
                 Bot.Move(HumieX, HumieY)
-        for Misc in C.Misc:
-            Misc.Move()
-        C.Misc[0].Move()
+        for i in range(len(C.Misc)):
+            C.Misc[i].Move()
+            if C.Misc[i].Alive == False:
+                C.Misc.pop(i)
+                
         
         DISPLAY.fill(BLACK) 
         
@@ -106,7 +108,7 @@ while True:
         for Misc in C.Misc:
             Misc.Draw()
             
-        print(HumieX,HumieY)
+        #print(HumieX,HumieY)
          
         
     
