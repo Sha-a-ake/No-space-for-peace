@@ -15,39 +15,98 @@ Draw.Map();
 Draw.Model(Humie,HumieX,HumieY)
 
 def Menu(arg):
+    choice = 0
+    fontObj = pygame.font.Font('freesansbold.ttf', 32)
     
     if arg == 'main':
         while True:
-            choice = 1
-            fontObj = pygame.font.Font('freesansbold.ttf', 32)
-            text1 = fontObj.render('Новая Игра', True, WHITE)
-            text2 = fontObj.render('Настройки', True, WHITE)
-            text3 = fontObj.render('Выход', True, WHITE)
+            
+            text0 = fontObj.render('Новая Игра', True, WHITE)
+            text1 = fontObj.render('Настройки', True, WHITE)
+            text2 = fontObj.render('Выход', True, WHITE)
+            text = [text0,text1,text2]
             
             for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
+                    
                     if event.key == pygame.K_SPACE:
-                        return(0)
-                        
-                    
+                        if choice == 0: return(0)
+                        if choice == 1: return(1)
+                        if choice == 2: return(2)
+                    if event.key == pygame.K_DOWN:
+                        if choice < 2: choice += 1
+                        else: choice = 0
+                    if event.key == pygame.K_UP:
+                        if choice > 0: choice -= 1
+                        else: choice = 2
 
-                    
-            DISPLAY.fill(BLACK)    
-
-
-            DISPLAY.blit(text1,(220,120))
-            DISPLAY.blit(text2,(220,220))
-            DISPLAY.blit(text3,(220,320))
-            
+            if choice == 0: text0 = fontObj.render('Новая Игра', True, BLUE)
+            if choice == 1: text1 = fontObj.render('Настройки', True, BLUE)
+            if choice == 2: text2 = fontObj.render('Выход', True, BLUE)
+       
+            DISPLAY.fill(BLACK)
+            DISPLAY.blit(text0,(220,120))
+            DISPLAY.blit(text1,(220,220))
+            DISPLAY.blit(text2,(220,320))
             pygame.display.update()
             FpsClock.tick(FPS)
     if arg == 'pause':
-        pass
+        while True:
+            
+            text0 = fontObj.render('Продолжить', True, WHITE)
+            text1 = fontObj.render('Главное Меню', True, WHITE)
+            text2 = fontObj.render('Выход', True, WHITE)
+            text = [text0,text1,text2]
+            
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    
+                    if event.key == pygame.K_SPACE:
+                        if choice == 0: return(0)
+                        if choice == 1: return(1)
+                        if choice == 2: return(2)
+                    if event.key == pygame.K_DOWN:
+                        if choice < 2: choice += 1
+                        else: choice = 0
+                    if event.key == pygame.K_UP:
+                        if choice > 0: choice -= 1
+                        else: choice = 2
+
+            if choice == 0: text0 = fontObj.render('Продолжить', True, BLUE)
+            if choice == 1: text1 = fontObj.render('Главное Меню', True, BLUE)
+            if choice == 2: text2 = fontObj.render('Выход', True, BLUE)
+       
+            
+            DISPLAY.blit(text0,(220,120))
+            DISPLAY.blit(text1,(220,220))
+            DISPLAY.blit(text2,(220,320))
+            pygame.display.update()
+            FpsClock.tick(FPS)
     if arg == 'set':
-        pass
+        while True:
+            
+            text0 = fontObj.render('Назад', True, BLUE)
+            text = [text0]
+            
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    
+                    if event.key == pygame.K_SPACE:
+                        return(0)
+
+            DISPLAY.fill(BLACK)
+            DISPLAY.blit(text0,(220,220))
+            pygame.display.update()
+            FpsClock.tick(FPS)
     if arg == 'exit':
         pygame.quit()
         sys.exit()
@@ -55,13 +114,11 @@ def Menu(arg):
 # Main game loop
 def Loop():
     global Humie,HumieX,HumieY
-    Menu('main')
+
+    Move = True
     while True:
-        
         # Checking for player actions
         for event in pygame.event.get():
-            
-            Move = False # if True, activates move
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
@@ -90,7 +147,7 @@ def Loop():
                     Move = True
                     Humie = HumieDown
                     if C.Map[HumieX][HumieY+1][2] == True and C.Map[HumieX][HumieY+1][3] == True:
-                        HumieY += 1 
+                        HumieY += 1
                 if event.key == pygame.K_SPACE:
                     Move = True
                     if Humie == HumieLeft:
@@ -106,8 +163,10 @@ def Loop():
                         for Bot in C.Bots:
                             Bot.GetHit(HumieX,HumieY+1,10)
                 if event.key == pygame.K_ESCAPE:
-                    Menu('pause')
-            
+                    menu = Menu('pause')
+                    if menu == 0: continue
+                    if menu == 1: return(0)
+                    if menu == 2: pygame.quit(); sys.exit();
             
             # Calculating enviroment reaction  
             if Move == False: continue                  
@@ -131,7 +190,7 @@ def Loop():
                 
             print(HumieX,HumieY)
              
-            
+            Move = False # if True, activates move
         
         pygame.display.update()
         FpsClock.tick(FPS) 
@@ -159,4 +218,11 @@ for k in range(10):
 
 
 # Запуск
-Loop()
+while True:
+    menu = Menu('main')
+    if menu == 0:
+        Loop()
+    elif menu == 1:
+        menu == Menu('set')
+        if menu == 0: continue
+    elif menu == 2: pygame.quit(); sys.exit();
