@@ -24,5 +24,4 @@ FpsClock = pygame.time.Clock()
 DISPLAY = pygame.display.set_mode((WinX,WinY),0,32)
 
 # Game constants
-HumieX = 1; HumieY = 1
 DroidX = 18; DroidY = 6
