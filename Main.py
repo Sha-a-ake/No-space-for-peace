@@ -1,4 +1,4 @@
-import pygame, sys, Draw, Enemies, Func, Gen, Misc, Player
+import pygame, sys, Draw, Enemies, Func, Gen, Misc, Player, Game
 import Config as C
 from pygame.locals import *
 from Const import *
@@ -15,13 +15,6 @@ Draw.Map();
 Draw.Model(C.Humie,C.HumieX,C.HumieY)
 Player.Move('right')
 
-
-
-def Msg(message = None):
-    global Messages
-    if message != None:
-        Messages = Messages[1:]
-        Messages.append(message)
 
 
 def Menu(arg):
@@ -87,6 +80,7 @@ def Menu(arg):
                     if event.key == pygame.K_UP:
                         if choice > 0: choice -= 1
                         else: choice = 2
+                    if event.key == pygame.K_ESCAPE: return(0)
 
             if choice == 0: text0 = fontObj.render('Продолжить', True, BLUE)
             if choice == 1: text1 = fontObj.render('Главное Меню', True, BLUE)
@@ -191,7 +185,7 @@ def Loop():
             for Misc in C.Misc:
                 Misc.Draw()
             Draw.MsgBox(Messages)
-             
+            
             C.Move = False # if True, activates move
         
         pygame.display.update()

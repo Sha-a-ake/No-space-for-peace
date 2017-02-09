@@ -25,3 +25,6 @@ DISPLAY = pygame.display.set_mode((WinX,WinY),0,32)
 
 # Game constants
 DroidX = 18; DroidY = 6
+
+# MessageBox height
+MsgBox_height = 4

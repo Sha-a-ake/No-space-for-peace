@@ -1,4 +1,4 @@
-import pygame
+import pygame, Game
 import Config as C
 from Const import *
 """
@@ -56,8 +56,9 @@ def Model(Humie,x,y):
     DISPLAY.blit(Humie,((x+1)*24,(y+1)*24))
 
 
-def MsgBox(Messages, direction = 'up'):
+def MsgBox(direction = 'up'):
     fontObj = pygame.font.Font('freesansbold.ttf', 16)
+    Messages = Game.Msg()
     
     for i in range(len(Messages)):
         if direction == 'up':
