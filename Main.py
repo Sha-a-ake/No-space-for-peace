@@ -182,7 +182,7 @@ def Loop():
                     Misc.Move()
                     if Misc.Alive == False:
                         C.Misc.remove(Misc)
-                print(Messages)
+
             
             DISPLAY.fill(BLACK) 
             
