@@ -15,6 +15,15 @@ Draw.Map();
 Draw.Model(C.Humie,C.HumieX,C.HumieY)
 Player.Move('right')
 
+
+
+def Msg(message = None):
+    global Messages
+    if message != None:
+        Messages = Messages[1:]
+        Messages.append(message)
+
+
 def Menu(arg):
     choice = 0
     fontObj = pygame.font.Font('freesansbold.ttf', 32)
@@ -116,7 +125,6 @@ def Menu(arg):
 # Main game loop
 def Loop():
     #global Humie,HumieX,HumieY
-
     C.Move = True
     while True:
         # Checking for player actions
@@ -129,15 +137,20 @@ def Loop():
                 
                 if event.key == pygame.K_RIGHT:
                     Player.Move('right')
+                    Msg('Right')
                         
                 if event.key == pygame.K_LEFT:
                     Player.Move('left')
+                    Msg('Left')
                       
                 if event.key == pygame.K_UP:
                     Player.Move('up')
+                    Msg('up')
                         
                 if event.key == pygame.K_DOWN:
                     Player.Move('down')
+                    Msg('down')
+                    
                     
                 if event.key == pygame.K_SPACE:
                     C.Move = True
@@ -169,20 +182,18 @@ def Loop():
                     Misc.Move()
                     if Misc.Alive == False:
                         C.Misc.remove(Misc)
-            
+                print(Messages)
             
             DISPLAY.fill(BLACK) 
             
             # Drawing things
-            Draw.Map() 
+            Draw.Map()
             #Draw.WalkMap()
             for Bot in C.Bots:
                 Bot.Draw()
             Draw.Model(C.Humie,C.HumieX,C.HumieY)
             for Misc in C.Misc:
                 Misc.Draw()
-                
-  
              
             C.Move = False # if True, activates move
         
@@ -190,7 +201,7 @@ def Loop():
         FpsClock.tick(FPS)
 
 
-
+Messages = ['0','0','0','0'] # Array of recent game messages
 
 # Create an enemy of chosen type
 def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy in x,y
