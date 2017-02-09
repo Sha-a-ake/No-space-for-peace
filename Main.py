@@ -89,6 +89,7 @@ def Menu(arg):
             DISPLAY.blit(text2,(220,320))
             pygame.display.update()
             FpsClock.tick(FPS)
+
     if arg == 'set':
         while True:
             
@@ -155,18 +156,20 @@ def Loop():
                     
                 if event.key == pygame.K_ESCAPE:
                     menu = Menu('pause')
-                    if menu == 0: continue
-                    if menu == 1: return(0)
+                    if menu == 0: pass
+                    if menu == 1: return(0)   
                     if menu == 2: pygame.quit(); sys.exit();
             
             # Calculating enviroment reaction  
-            if C.Move == False: continue                  
-            for Bot in C.Bots:
-                Bot.Move(C.HumieX, C.HumieY)
-            for Misc in C.Misc:
-                Misc.Move()
-                if Misc.Alive == False:
-                    C.Misc.remove(Misc)
+            if C.Move == True:
+            
+                for Bot in C.Bots:
+                    Bot.Move(C.HumieX, C.HumieY)
+                for Misc in C.Misc:
+                    Misc.Move()
+                    if Misc.Alive == False:
+                        C.Misc.remove(Misc)
+            
             
             DISPLAY.fill(BLACK) 
             
@@ -184,7 +187,9 @@ def Loop():
             C.Move = False # if True, activates move
         
         pygame.display.update()
-        FpsClock.tick(FPS) 
+        FpsClock.tick(FPS)
+
+
 
 
 # Create an enemy of chosen type
@@ -199,7 +204,7 @@ def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy 
                 x = randint(0,AreaX-1)
                 y = randint(0,AreaY-1)            
 
-# Creating a bunch oh enemies for testing                
+# Creating a bunch of enemies for testing                
 for k in range(10):
     Spawn('Droid', k+2,k+2)
 
