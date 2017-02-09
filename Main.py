@@ -137,19 +137,15 @@ def Loop():
                 
                 if event.key == pygame.K_RIGHT:
                     Player.Move('right')
-                    Msg('Right')
                         
                 if event.key == pygame.K_LEFT:
                     Player.Move('left')
-                    Msg('Left')
                       
                 if event.key == pygame.K_UP:
                     Player.Move('up')
-                    Msg('up')
                         
                 if event.key == pygame.K_DOWN:
                     Player.Move('down')
-                    Msg('down')
                     
                     
                 if event.key == pygame.K_SPACE:
