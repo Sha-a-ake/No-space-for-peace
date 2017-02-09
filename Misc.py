@@ -1,3 +1,5 @@
+# --- Does not work yet --- #
+
 import pygame
 from Const import *
 import Config as C
@@ -20,19 +22,15 @@ class bullet:
         
         
             
-    def Move(self):
-        if   self.direction == 'up':
-             self.y -= 1
-        elif self.direction == 'down':
-             self.y += 1
-        elif self.direction == 'right':
-             self.x += 1
-        else:
-             self.x -= 1
-        self.Impact()
-            
-    def Draw(self):
-        DISPLAY.blit(self.Model,((self.x+1)*TileSize,(self.y+1)*TileSize))
-        
+def Move(self):
+    if   self.direction == 'up':
+         self.y -= 1
+    elif self.direction == 'down':
+         self.y += 1
+    elif self.direction == 'right':
+         self.x += 1
+    else:
+         self.x -= 1
+    self.Impact()    
         
         
