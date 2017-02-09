@@ -54,6 +54,16 @@ def WalkMap():
             
 def Model(Humie,x,y):
     DISPLAY.blit(Humie,((x+1)*24,(y+1)*24))
+
+
+def MsgBox(Messages):
+    fontObj = pygame.font.Font('freesansbold.ttf', 16)
+    
+    for i in range(len(Messages)):
+        DISPLAY.blit(fontObj.render(Messages[i], True, BLUE),(WinX-200,WinY-100+i*20))
+        
+        
+    
     
 def Square(X1,Y1,X2,Y2):
     x = X1*24; y = Y1*24
@@ -62,4 +72,4 @@ def Square(X1,Y1,X2,Y2):
         y += TileSize
         for X in range(abs(Y2-Y1+1)):
             x += TileSize
-            DISP.blit(Tile, (x,y))
+            DISPLAY.blit(Tile, (x,y))
