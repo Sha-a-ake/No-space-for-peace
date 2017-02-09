@@ -184,15 +184,12 @@ def Loop():
             Draw.Model(C.Humie,C.HumieX,C.HumieY)
             for Misc in C.Misc:
                 Misc.Draw()
-            Draw.MsgBox(Messages)
+            Draw.MsgBox()
             
             C.Move = False # if True, activates move
         
         pygame.display.update()
         FpsClock.tick(FPS)
-
-
-Messages = ['0','0','0','0'] # Array of recent game messages
 
 # Create an enemy of chosen type
 def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy in x,y
