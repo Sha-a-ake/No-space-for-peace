@@ -12,7 +12,7 @@ class droid:
         
     def Draw(self):
         global DISPLAY
-        DISPLAY.blit(self.Model,((self.X+1)*24,(self.Y+1)*24))    
+        DISPLAY.blit(self.Model,((self.X+1)*TileSize,(self.Y+1)*TileSize))    
         
     def Attack(self, direction):
         Bullet = Misc.bullet
