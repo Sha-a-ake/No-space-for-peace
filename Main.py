@@ -1,4 +1,4 @@
-import pygame, sys, Draw, Enemies, Func, Gen, Misc
+import pygame, sys, Draw, Enemies, Func, Gen, Misc, Player
 import Config as C
 from pygame.locals import *
 from Const import *
@@ -12,7 +12,8 @@ C.init()
 AreaX = 20; AreaY = 16
 Gen.Create_Map(AreaX, AreaY)
 Draw.Map(); 
-Draw.Model(Humie,HumieX,HumieY)
+Draw.Model(C.Humie,C.HumieX,C.HumieY)
+Player.Move('right')
 
 def Menu(arg):
     choice = 0
@@ -113,9 +114,9 @@ def Menu(arg):
 
 # Main game loop
 def Loop():
-    global Humie,HumieX,HumieY
+    #global Humie,HumieX,HumieY
 
-    Move = True
+    C.Move = True
     while True:
         # Checking for player actions
         for event in pygame.event.get():
@@ -126,42 +127,32 @@ def Loop():
             if event.type == pygame.KEYDOWN:
                 
                 if event.key == pygame.K_RIGHT:
-                    Move = True
-                    Humie = HumieRight
-                    if C.Map[HumieX+1][HumieY][2] == True and C.Map[HumieX+1][HumieY][3] == True:
-                        HumieX += 1
+                    Player.Move('right')
                         
                 if event.key == pygame.K_LEFT:
-                    Move = True
-                    Humie = HumieLeft
-                    if C.Map[HumieX-1][HumieY][2] == True and C.Map[HumieX-1][HumieY][3] == True:
-                        HumieX -= 1
-                        
+                    Player.Move('left')
+                      
                 if event.key == pygame.K_UP:
-                    Move = True
-                    Humie = HumieUp
-                    if C.Map[HumieX][HumieY-1][2] == True and C.Map[HumieX][HumieY-1][3] == True:
-                        HumieY -= 1
+                    Player.Move('up')
                         
                 if event.key == pygame.K_DOWN:
-                    Move = True
-                    Humie = HumieDown
-                    if C.Map[HumieX][HumieY+1][2] == True and C.Map[HumieX][HumieY+1][3] == True:
-                        HumieY += 1
+                    Player.Move('down')
+                    
                 if event.key == pygame.K_SPACE:
-                    Move = True
-                    if Humie == HumieLeft:
+                    C.Move = True
+                    if C.Humie == HumieLeft:
                         for Bot in C.Bots:
-                            Bot.GetHit(HumieX-1,HumieY,10)
-                    if Humie == HumieRight:
+                            Bot.GetHit(C.HumieX-1,C.HumieY,30)
+                    if C.Humie == HumieRight:
                         for Bot in C.Bots:
-                            Bot.GetHit(HumieX+1,HumieY,10)
-                    if Humie == HumieUp:
+                            Bot.GetHit(C.HumieX+1,C.HumieY,30)
+                    if C.Humie == HumieUp:
                         for Bot in C.Bots:
-                            Bot.GetHit(HumieX,HumieY-1,10)
-                    if Humie == HumieDown:
+                            Bot.GetHit(C.HumieX,C.HumieY-1,30)
+                    if C.Humie == HumieDown:
                         for Bot in C.Bots:
-                            Bot.GetHit(HumieX,HumieY+1,10)
+                            Bot.GetHit(C.HumieX,C.HumieY+1,30) 
+                    
                 if event.key == pygame.K_ESCAPE:
                     menu = Menu('pause')
                     if menu == 0: continue
@@ -169,9 +160,9 @@ def Loop():
                     if menu == 2: pygame.quit(); sys.exit();
             
             # Calculating enviroment reaction  
-            if Move == False: continue                  
+            if C.Move == False: continue                  
             for Bot in C.Bots:
-                Bot.Move(HumieX, HumieY)
+                Bot.Move(C.HumieX, C.HumieY)
             for Misc in C.Misc:
                 Misc.Move()
                 if Misc.Alive == False:
@@ -184,21 +175,17 @@ def Loop():
             #Draw.WalkMap()
             for Bot in C.Bots:
                 Bot.Draw()
-            Draw.Model(Humie,HumieX,HumieY)
+            Draw.Model(C.Humie,C.HumieX,C.HumieY)
             for Misc in C.Misc:
                 Misc.Draw()
                 
-            print(HumieX,HumieY)
+  
              
-            Move = False # if True, activates move
+            C.Move = False # if True, activates move
         
         pygame.display.update()
         FpsClock.tick(FPS) 
 
-# Bullet testing
-Bullet = Misc.bullet
-for i in range(8):    
-    C.Misc.append(Bullet(i+4,i+3,'down',10))
 
 # Create an enemy of chosen type
 def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy in x,y
