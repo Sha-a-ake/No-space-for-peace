@@ -194,6 +194,7 @@ def Loop():
             Draw.Model(C.Humie,C.HumieX,C.HumieY)
             for Misc in C.Misc:
                 Misc.Draw()
+            Draw.MsgBox(Messages)
              
             C.Move = False # if True, activates move
         
