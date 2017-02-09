@@ -56,11 +56,15 @@ def Model(Humie,x,y):
     DISPLAY.blit(Humie,((x+1)*24,(y+1)*24))
 
 
-def MsgBox(Messages):
+def MsgBox(Messages, direction = 'up'):
     fontObj = pygame.font.Font('freesansbold.ttf', 16)
     
     for i in range(len(Messages)):
-        DISPLAY.blit(fontObj.render(Messages[i], True, BLUE),(WinX-200,WinY-100+i*20))
+        if direction == 'up':
+            DISPLAY.blit(fontObj.render(Messages[i], True, WHITE),
+                         (WinX-200,WinY-(20*len(Messages))+i*20))
+        elif direction =='down':
+            DISPLAY.blit(fontObj.render(Messages[i], True, WHITE),(WinX-200,WinY-i*20))
         
         
     
