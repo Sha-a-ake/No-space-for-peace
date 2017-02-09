@@ -1,5 +1,3 @@
-# --- Does not work yet --- #
-
 import pygame
 from Const import *
 import Config as C
@@ -17,7 +15,8 @@ class bullet:
     
     def Impact(self):
         if   C.Map[self.x][self.y][2] == False: self.Alive = False
-        #elif C.Map[self.x][self.y][3] == False:
+        elif self.x == C.HumieX and self.y == C.HumieY:
+            print('Hit!')
         
         
             
@@ -30,11 +29,10 @@ class bullet:
              self.x += 1
         else:
              self.x -= 1
-        print('Cords',self.x,self.y)
         self.Impact()
             
     def Draw(self):
-        DISPLAY.blit(self.Model,((self.x+1)*24,(self.y+1)*24))
+        DISPLAY.blit(self.Model,((self.x+1)*TileSize,(self.y+1)*TileSize))
         
         
         
