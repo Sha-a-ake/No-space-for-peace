@@ -6,30 +6,30 @@ class droid:
     Model = CalmDroidLeft
     Mode = 'Calm'
     Hp = 25
-    def __init__(self,X,Y):
-        self.X = X
-        self.Y = Y
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
         
     def Draw(self):
         global DISPLAY
-        DISPLAY.blit(self.Model,((self.X+1)*TileSize,(self.Y+1)*TileSize))    
+        DISPLAY.blit(self.Model,((self.x+1)*TileSize,(self.y+1)*TileSize))    
         
     def Attack(self, direction):
         Bullet = Misc.bullet
-        C.Misc.append(Bullet(self.X,self.Y,direction,10))    
+        C.Misc.append(Bullet(self.x,self.y,direction,10))    
         
     def Move(self,TargetX,TargetY):
         if self.Mode != 'dead':
-            C.Map[self.X][self.Y][3] = True
-            if abs(TargetX - self.X) < abs(TargetY - self.Y):
-                if TargetX > self.X:
-                    self.X += 1
+            C.Map[self.x][self.y][3] = True
+            if abs(TargetX - self.x) < abs(TargetY - self.y):
+                if TargetX > self.x:
+                    self.x += 1
                     self.Model = CalmDroidRight
-                elif TargetX < self.X:
-                    self.X -= 1
+                elif TargetX < self.x:
+                    self.x -= 1
                     self.Model = CalmDroidLeft
                 else:
-                    if TargetY < self.Y:
+                    if TargetY < self.y:
                         self.Attack('up')
                         self.Model = CalmDroidUp
                     else:
@@ -37,29 +37,29 @@ class droid:
                         self.Model = CalmDroidDown
             
             else :
-                if TargetY > self.Y:
-                    self.Y += 1
+                if TargetY > self.y:
+                    self.y += 1
                     self.Model = CalmDroidDown
-                elif TargetY < self.Y:
-                    self.Y -= 1
+                elif TargetY < self.y:
+                    self.y -= 1
                     self.Model = CalmDroidUp
                 else:
-                    if TargetX > self.X:
+                    if TargetX > self.x:
                         self.Attack('right')
                         self.Model = CalmDroidRight
                     else:
                         self.Attack('left')
                         self.Model = CalmDroidLeft
-            C.Map[self.X][self.Y][3] = False    
+            C.Map[self.x][self.y][3] = False    
         
     def Die(self):
         print('I died for your sins')
         self.Mode = 'dead'
         self.Model = DeadDroidLeft
-        C.Map[self.X][self.Y][3] = True
+        C.Map[self.x][self.y][3] = True
         
     def GetHit(self,x,y,power):
-        if self.X == x and self.Y == y:
+        if self.x == x and self.y == y:
             print('Getting Hit! Hp =', self.Hp)
             self.Hp -= power
             if self.Hp <= 0:
