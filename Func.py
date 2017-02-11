@@ -127,7 +127,7 @@ def FindPath(Map,x1,y1,x2,y2):
             A[y][x+1] = str(int(A[y][x])+1)
             List.append((y,x+1))
     else:
-        return("No Path")
+        return((x1,y1))
         
     # Восстановление
     for i in List:
@@ -155,8 +155,9 @@ def FindPath(Map,x1,y1,x2,y2):
             y,x = y+1,x
         if A[y][x+1] == str(int(A[y][x])-1):
             List.append((y,x+1))
-            y,x = y,x+1  
-    List.reverse()   
+            y,x = y,x+1
+
+    List.reverse()
             
 ##    # Вывод для отладки
 ##    for i in List:
@@ -164,6 +165,6 @@ def FindPath(Map,x1,y1,x2,y2):
 ##    print()
 ##    for i in A:
 ##        print(i)
-##
+
     return(List[1])
     

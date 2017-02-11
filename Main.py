@@ -165,7 +165,7 @@ def Loop():
             
             # Calculating enviroment reaction  
             if C.Move == True:
-            
+                
                 for Bot in C.Bots:
                     Bot.Move(C.HumieX, C.HumieY)
                 for Misc in C.Misc:
@@ -204,7 +204,7 @@ def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy 
                 y = randint(0,AreaY-1)            
 
 # Creating a bunch of enemies for testing                
-for k in range(10):
+for k in range(5):
     Spawn('Droid', k+2,k+2)
 
 

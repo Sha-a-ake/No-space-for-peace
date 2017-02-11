@@ -1,4 +1,4 @@
-import pygame, Misc, Game
+import pygame, Misc, Game, Func
 from Const import * 
 import Config as C
 
@@ -17,40 +17,42 @@ class droid:
     def Attack(self, direction):
         Bullet = Misc.bullet
         C.Misc.append(Bullet(self.X,self.Y,direction,10))    
-        
+
     def Move(self,TargetX,TargetY):
-        if self.Mode != 'dead':
-            C.Map[self.X][self.Y][3] = True
+        if self.Mode != 'dead' and abs(self.X-TargetX) > 1 and abs(self.Y-TargetY) > 1:
             if abs(TargetX - self.X) < abs(TargetY - self.Y):
                 if TargetX > self.X:
-                    self.X += 1
                     self.Model = CalmDroidRight
                 elif TargetX < self.X:
-                    self.X -= 1
                     self.Model = CalmDroidLeft
                 else:
                     if TargetY < self.Y:
-                        self.Attack('up')
                         self.Model = CalmDroidUp
                     else:
-                        self.Attack('down')
                         self.Model = CalmDroidDown
-            
             else :
                 if TargetY > self.Y:
-                    self.Y += 1
                     self.Model = CalmDroidDown
                 elif TargetY < self.Y:
-                    self.Y -= 1
                     self.Model = CalmDroidUp
                 else:
                     if TargetX > self.X:
-                        self.Attack('right')
                         self.Model = CalmDroidRight
                     else:
-                        self.Attack('left')
                         self.Model = CalmDroidLeft
-            C.Map[self.X][self.Y][3] = False    
+                
+            try:
+                cords = Func.FindPath(C.Map,self.X,self.Y,TargetX,TargetY)
+                for i in range(len(C.Bots)):
+                    C.Map[C.Bots[i].X][C.Bots[i].Y][2] = True
+                self.X = cords[0]
+                self.Y = cords[1]
+                for i in range(len(C.Bots)):
+                    if C.Bots[i].Mode != 'dead':
+                        C.Map[C.Bots[i].X][C.Bots[i].Y][2] = False
+            except: pass
+
+        
         
     def Die(self):
         print('I died for your sins')
