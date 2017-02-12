@@ -165,9 +165,9 @@ def Loop():
             
             # Calculating enviroment reaction  
             if C.Move == True:
-                
+            
                 for Bot in C.Bots:
-                    Bot.Move(C.HumieX, C.HumieY)
+                    Bot.Turn()
                 for Misc in C.Misc:
                     Misc.Move()
                     if Misc.Alive == False:
@@ -179,6 +179,10 @@ def Loop():
             # Drawing things
             Draw.Map()
             #Draw.WalkMap()
+            
+            #input()
+            Draw.Model(C.Humie,C.HumieX,C.HumieY)
+            
             for Bot in C.Bots:
                 Bot.Draw()
             Draw.Model(C.Humie,C.HumieX,C.HumieY)
@@ -204,7 +208,7 @@ def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy 
                 y = randint(0,AreaY-1)            
 
 # Creating a bunch of enemies for testing                
-for k in range(5):
+for k in range(10):
     Spawn('Droid', k+2,k+2)
 
 
