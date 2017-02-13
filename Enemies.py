@@ -1,4 +1,4 @@
-import pygame, Misc, Game
+import pygame, Misc, Game, Func
 from Const import * 
 import Config as C
 
