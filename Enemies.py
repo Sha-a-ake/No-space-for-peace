@@ -113,8 +113,7 @@ class droid:
            
     def Turn(self):
         if self.Mode != 'dead':
-##            self.MoveInLine(C.HumieX,C.HumieY)
-            self.MoveTo(C.HumieX,C.HumieY)
+            self.MoveInLine(C.HumieX,C.HumieY)
       
                 
                 
