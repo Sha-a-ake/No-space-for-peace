@@ -208,7 +208,7 @@ def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy 
                 y = randint(0,AreaY-1)            
 
 # Creating a bunch of enemies for testing                
-for k in range(1,11):
+for k in range(6,9):
     Spawn('Droid', k+2,k+2)
 
 

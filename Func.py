@@ -34,7 +34,7 @@ def MakeSquaresInCircle(Rooms,Radius):
         Sq.append(MakeASquare(Radius))
     return(Sq)
     
-def FindPath(Map,x1,y1,x2,y2):
+def FindPath(Map,x1,y1,x2,y2,ReturnLen = False):
     Y = len(Map)
     X = len(Map[0])
     A = []
@@ -103,6 +103,9 @@ def FindPath(Map,x1,y1,x2,y2):
         return((x1,y1))
         
     # Восстановление
+    if ReturnLen == True:
+        return(int(A[List[0][1]][List[0][0]]))
+    
     for i in List:
         if A[y-1][x] == '1':
             List.append((y-1,x))

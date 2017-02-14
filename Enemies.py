@@ -1,6 +1,7 @@
 import pygame, Misc, Game, Func
 from Const import * 
 import Config as C
+from math import sqrt
 
 class droid:
     Model = CalmDroidLeft
@@ -9,6 +10,18 @@ class droid:
     def __init__(self,X,Y):
         self.X = X
         self.Y = Y
+
+    Far = 5 # Константы
+    Close = 2
+    
+    IsFar = IsClose = LineUp = None
+
+    def Evaluate(self):
+        Radius = sqrt((self.X-C.HumieX)**2 + (self.Y-C.HumieY)**2)
+        if Radius >= self.Far: self.IsFar = True
+        elif Radius <= self.Close: self.IsClose = True
+        else: self.IsFar = False; self.IsClose = False
+
         
     #-----  Basic functions ----- #  
       
@@ -113,7 +126,10 @@ class droid:
            
     def Turn(self):
         if self.Mode != 'dead':
-            self.MoveInLine(C.HumieX,C.HumieY)
+            self.Evaluate()
+##            self.MoveInLine(C.HumieX,C.HumieY)
+            if self.IsFar != True:
+                self.MoveTo(C.HumieX,C.HumieY)
       
                 
                 
