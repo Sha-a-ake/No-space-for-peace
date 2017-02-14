@@ -12,15 +12,15 @@ def Move(direction):
             C.HumieX += 1        
     elif direction == 'left':
         C.Humie = HumieLeft
-        if C.WalkMap[C.HumieX-1][C.HumieY][2] == False:
+        if C.WalkMap[C.HumieX-1][C.HumieY] == False:
             C.HumieX -= 1        
     elif direction == 'up':
         C.Humie = HumieUp
-        if C.WalkMap[C.HumieX][C.HumieY-1][2] == False:
+        if C.WalkMap[C.HumieX][C.HumieY-1] == False:
             C.HumieY -= 1
     elif direction == 'down':
         C.Humie = HumieDown
-        if C.WalkMap[C.HumieX][C.HumieY+1][2] == False:
+        if C.WalkMap[C.HumieX][C.HumieY+1] == False:
             C.HumieY += 1
 
     C.WalkMap[C.HumieX][C.HumieY] = 3
