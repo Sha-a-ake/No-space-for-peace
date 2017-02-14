@@ -16,7 +16,7 @@ class bullet:
         if direction == 'up' or direction == 'down': self.Model = BulletVer
     
     def Impact(self):
-        if   C.Map[self.x][self.y][2] == False: self.Alive = False
+        if   C.WalkMap == 2: self.Alive = False
         elif self.x == C.HumieX and self.y == C.HumieY:
             print('Hit!')
         

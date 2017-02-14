@@ -4,26 +4,26 @@ from Images import *
 def Move(direction):
     C.Move = True
     
-    C.Map[C.HumieX][C.HumieY][3] = True
+    C.WalkMap[C.HumieX][C.HumieY] = 0
     
     if direction == 'right':
         C.Humie = HumieRight
-        if C.Map[C.HumieX+1][C.HumieY][2] == True and C.Map[C.HumieX+1][C.HumieY][3] == True:
+        if C.WalkMap[C.HumieX+1][C.HumieY] == False:
             C.HumieX += 1        
     elif direction == 'left':
         C.Humie = HumieLeft
-        if C.Map[C.HumieX-1][C.HumieY][2] == True and C.Map[C.HumieX-1][C.HumieY][3] == True:
+        if C.WalkMap[C.HumieX-1][C.HumieY][2] == False:
             C.HumieX -= 1        
     elif direction == 'up':
         C.Humie = HumieUp
-        if C.Map[C.HumieX][C.HumieY-1][2] == True and C.Map[C.HumieX][C.HumieY-1][3] == True:
+        if C.WalkMap[C.HumieX][C.HumieY-1][2] == False:
             C.HumieY -= 1
     elif direction == 'down':
         C.Humie = HumieDown
-        if C.Map[C.HumieX][C.HumieY+1][2] == True and C.Map[C.HumieX][C.HumieY+1][3] == True:
+        if C.WalkMap[C.HumieX][C.HumieY+1][2] == False:
             C.HumieY += 1
 
-    C.Map[C.HumieX][C.HumieY][3] = False
+    C.WalkMap[C.HumieX][C.HumieY] = 3
             
     def Attack():
         C.Move = True

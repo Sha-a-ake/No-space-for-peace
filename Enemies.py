@@ -47,25 +47,25 @@ class droid:
             if attack: self.Attack('up')
             self.Model = CalmDroidUp  
             for i in range(length):
-                if C.Map[self.X][self.Y-1][2] and C.Map[self.X][self.Y][3]:
+                if C.WalkMap[self.X][self.Y-1] == False:
                     self.Y -= 1      
         elif direction == 'down':
             if attack: self.Attack('down')
             self.Model = CalmDroidDown
             for i in range(length):
-                if C.Map[self.X][self.Y+1][2] and C.Map[self.X][self.Y][3]:
+                if C.WakMap[self.X][self.Y+1] == False:
                     self.Y += 1
         elif direction == 'left':
             if attack: self.Attack('left')
             self.Model = CalmDroidLeft
             for i in range(length):
-                if C.Map[self.X-1][self.Y][2] and C.Map[self.X][self.Y][3]:        
+                if C.WalkMap[self.X-1][self.Y][2] == False:        
                     self.X -= 1
         elif direction == 'right':
             if attack: self.Attack('right')
             self.Model = CalmDroidRight
             for i in range(length):
-                if C.Map[self.X+1][self.Y][2] and C.Map[self.X][self.Y][3]:
+                if C.WalkMap[self.X+1][self.Y][2] == False:
                     self.X += 1
                     
     def Die(self):
@@ -73,7 +73,7 @@ class droid:
         Game.Msg('I died for your sins')
         self.Mode = 'dead'
         self.Model = DeadDroidLeft
-        C.Map[self.X][self.Y][3] = True
+        C.WalkMap[self.X][self.Y] = 0
         
     def GetHit(self,x,y,power):
         if self.X == x and self.Y == y:
@@ -87,7 +87,7 @@ class droid:
     # ----- Complex actions ----- #
           
     def MoveInLine(self,TargetX,TargetY):
-        C.Map[self.X][self.Y][3] = True
+        C.WalkMap[self.X][self.Y] = 0
          # Если расстояние до цели по иксу меньше чем по игреку
         if abs(TargetX - self.X) < abs(TargetY - self.Y):
             # Если цель правее / левее
@@ -119,16 +119,14 @@ class droid:
                 else:
                     self.Move('left',0,True)
                         
-        C.Map[self.X][self.Y][3] = False
+        C.WalkMap[self.X][self.Y] = 1
 
     def MoveTo(self,x,y):
-        cords = Func.FindPath(C.Map,self.X,self.Y,x,y)
+        cords = Func.FindPath(C.WalkMap,self.X,self.Y,x,y)
         
         #не стоит ли кто в целевой клетке
-        if C.Map[cords[0]][cords[1]][2] and C.Map[cords[0]][cords[1]][3]:
+        if C.WalkMap[cords[0]][cords[1]] == False:
             
-            C.Map[self.X][self.Y][3] = True
-            C.Map[cords[0]][cords[1]][3] = False
             self.X = cords[0]
             self.Y = cords[1]
            

@@ -25,30 +25,30 @@ from Const import *
 
 def Map():
     x = 0;
-    for Line in C.Map:
+    for Line in C.TileMap:
         y = 0
         x += TileSize
         for X in Line:
             y += TileSize
-            if X[0] == 0: DISPLAY.blit(Floor, (x,y))
-            elif X[0] == 11: DISPLAY.blit(WallHorTop, (x,y))
-            elif X[0] == 12: DISPLAY.blit(WallHorBottom, (x,y))
-            elif X[0] == 21: DISPLAY.blit(WallVerLeft, (x,y))
-            elif X[0] == 22: DISPLAY.blit(WallVerRight, (x,y))
-            elif X[0] == 31: DISPLAY.blit(WallCornerTL, (x,y))
-            elif X[0] == 32: DISPLAY.blit(WallCornerTR, (x,y))
-            elif X[0] == 41: DISPLAY.blit(WallCornerBL, (x,y))
-            elif X[0] == 42: DISPLAY.blit(WallCornerBR, (x,y))
+            if X == 0: DISPLAY.blit(Floor, (x,y))
+            elif X == 11: DISPLAY.blit(WallHorTop, (x,y))
+            elif X == 12: DISPLAY.blit(WallHorBottom, (x,y))
+            elif X == 21: DISPLAY.blit(WallVerLeft, (x,y))
+            elif X == 22: DISPLAY.blit(WallVerRight, (x,y))
+            elif X == 31: DISPLAY.blit(WallCornerTL, (x,y))
+            elif X == 32: DISPLAY.blit(WallCornerTR, (x,y))
+            elif X == 41: DISPLAY.blit(WallCornerBL, (x,y))
+            elif X == 42: DISPLAY.blit(WallCornerBR, (x,y))
             
 def WalkMap():
     x = 0;
-    for Line in C.Map:
+    for Line in C.WalkMap:
         y = 0
         x += TileSize
         for X in Line:
             y += TileSize
-            if   X[2] == False: DISPLAY.blit(RedCell, (x,y))
-            elif X[3] == False: DISPLAY.blit(OrangeCell, (x,y))
+            if   X == 2: DISPLAY.blit(RedCell, (x,y))
+            elif X == 1: DISPLAY.blit(OrangeCell, (x,y))
             else:               DISPLAY.blit(GreenCell, (x,y))
             
             

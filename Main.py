@@ -172,7 +172,7 @@ def Loop():
                     Misc.Move()
                     if Misc.Alive == False:
                         C.Misc.remove(Misc)
-                print()
+
 
             
             DISPLAY.fill(BLACK) 
@@ -202,13 +202,7 @@ def Loop():
 def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy in x,y
     if EnemyType == 'Droid':
         Enemy = Enemies.droid
-        while True:
-            if C.Map[x][y][2]:
-                C.Bots.append(Enemy(x,y))
-                break
-            else:
-                x = randint(0,AreaX-1)
-                y = randint(0,AreaY-1)            
+        C.Bots.append(Enemy(x,y))            
 
 # Creating a bunch of enemies for testing                
 for k in range(6,9):
