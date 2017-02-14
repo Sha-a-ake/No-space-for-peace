@@ -172,6 +172,7 @@ def Loop():
                     Misc.Move()
                     if Misc.Alive == False:
                         C.Misc.remove(Misc)
+                print()
 
             
             DISPLAY.fill(BLACK) 
@@ -191,9 +192,11 @@ def Loop():
             Draw.MsgBox()
             
             C.Move = False # if True, activates move
-        
+            
+            
         pygame.display.update()
         FpsClock.tick(FPS)
+        
 
 # Create an enemy of chosen type
 def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy in x,y
