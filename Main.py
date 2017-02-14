@@ -118,7 +118,7 @@ def Menu(arg):
 
 # Main game loop
 def Loop():
-    #global Humie,HumieX,HumieY
+    
     C.Move = True
     while True:
         # Checking for player actions
@@ -208,7 +208,7 @@ def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy 
                 y = randint(0,AreaY-1)            
 
 # Creating a bunch of enemies for testing                
-for k in range(10):
+for k in range(1,11):
     Spawn('Droid', k+2,k+2)
 
 

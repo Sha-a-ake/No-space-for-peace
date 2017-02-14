@@ -3,6 +3,9 @@ from Images import *
 
 def Move(direction):
     C.Move = True
+    
+    C.Map[C.HumieX][C.HumieY][3] = True
+    
     if direction == 'right':
         C.Humie = HumieRight
         if C.Map[C.HumieX+1][C.HumieY][2] == True and C.Map[C.HumieX+1][C.HumieY][3] == True:
@@ -19,6 +22,8 @@ def Move(direction):
         C.Humie = HumieDown
         if C.Map[C.HumieX][C.HumieY+1][2] == True and C.Map[C.HumieX][C.HumieY+1][3] == True:
             C.HumieY += 1
+
+    C.Map[C.HumieX][C.HumieY][3] = False
             
     def Attack():
         C.Move = True

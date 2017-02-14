@@ -97,13 +97,24 @@ class droid:
                 else:
                     self.Move('left',0,True)
                         
-        C.Map[self.X][self.Y][3] = False 
+        C.Map[self.X][self.Y][3] = False
+
+    def MoveTo(self,x,y):
+        cords = Func.FindPath(C.Map,self.X,self.Y,x,y)
+        
+        #не стоит ли кто в целевой клетке
+        if C.Map[cords[0]][cords[1]][2] and C.Map[cords[0]][cords[1]][3]:
+            
+            C.Map[self.X][self.Y][3] = True
+            C.Map[cords[0]][cords[1]][3] = False
+            self.X = cords[0]
+            self.Y = cords[1]
            
            
     def Turn(self):
         if self.Mode != 'dead':
-            self.MoveInLine(C.HumieX,C.HumieY)
-        
+##            self.MoveInLine(C.HumieX,C.HumieY)
+            self.MoveTo(C.HumieX,C.HumieY)
       
                 
                 
