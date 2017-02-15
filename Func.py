@@ -34,7 +34,7 @@ def MakeSquaresInCircle(Rooms,Radius):
         Sq.append(MakeASquare(Radius))
     return(Sq)
     
-def FindPath(Map,x1,y1,x2,y2,ReturnLen = False):
+def FindPath(Map,x1,y1,x2,y2,ReturnLen = False,Str = True):
     Y = len(Map)
     X = len(Map[0])
     A = []
@@ -46,9 +46,9 @@ def FindPath(Map,x1,y1,x2,y2,ReturnLen = False):
 
     for i in range(Y):
         for j in range(X):
-            if Map[i][j][2] == True:
+            if Map[i][j] == 0:
                 A[i][j] = '0'
-            elif Map[i][j][2] == False:
+            else:
                 A[i][j] = '|'
     
     y = x1
@@ -101,11 +101,11 @@ def FindPath(Map,x1,y1,x2,y2,ReturnLen = False):
             List.append((y,x+1))
     else:
         return((x1,y1))
-        
-    # Восстановление
+    
     if ReturnLen == True:
         return(int(A[List[0][1]][List[0][0]]))
-    
+
+    # Восстановление
     for i in List:
         if A[y-1][x] == '1':
             List.append((y-1,x))
@@ -142,5 +142,11 @@ def FindPath(Map,x1,y1,x2,y2,ReturnLen = False):
 ##    for i in A:
 ##        print(i)
 
-    return(List[1])
+    if Str == True:
+        if List[1][1] - List[0][1] == -1: return('8')
+        elif List[1][0] - List[0][0] == -1: return('4')
+        elif List[1][1] - List[0][1] == 1: return('2')
+        elif List[1][0] - List[0][0] == 1: return('6')
+    else:
+        return(List[1])
     

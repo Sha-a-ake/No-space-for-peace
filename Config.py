@@ -2,10 +2,10 @@ from Images import HumieUp
 
 def init():
     global TileMap
-    global PassMap
+    global WalkMap
     global IdMap
     TileMap = []
-    PassMap = []
+    WalkMap = []
     IdMap = []
     global Bots
     Bots = []

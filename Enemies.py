@@ -43,30 +43,45 @@ class droid:
         C.Misc.append(Bullet(self.X,self.Y,direction,10))
         
     def Move(self,direction,length = 1, attack = False):
-        if direction == 'up':
+        if direction == '8':
             if attack: self.Attack('up')
             self.Model = CalmDroidUp  
             for i in range(length):
-                if C.WalkMap[self.X][self.Y-1] == False:
-                    self.Y -= 1      
-        elif direction == 'down':
+                if C.WalkMap[self.X][self.Y-1] == 0:
+
+                    C.WalkMap[self.X][self.Y] = 0
+                    self.Y -= 1
+                    C.WalkMap[self.X][self.Y] = 1
+                    
+        elif direction == '2':
             if attack: self.Attack('down')
             self.Model = CalmDroidDown
             for i in range(length):
-                if C.WakMap[self.X][self.Y+1] == False:
+                if C.WalkMap[self.X][self.Y+1] == 0:
+                    
+                    C.WalkMap[self.X][self.Y] = 0
                     self.Y += 1
-        elif direction == 'left':
+                    C.WalkMap[self.X][self.Y] = 1
+                    
+        elif direction == '4':
             if attack: self.Attack('left')
             self.Model = CalmDroidLeft
             for i in range(length):
-                if C.WalkMap[self.X-1][self.Y][2] == False:        
+                if C.WalkMap[self.X-1][self.Y] == 0:
+
+                    C.WalkMap[self.X][self.Y] = 0
                     self.X -= 1
-        elif direction == 'right':
+                    C.WalkMap[self.X][self.Y] = 1
+                    
+        elif direction == '6':
             if attack: self.Attack('right')
             self.Model = CalmDroidRight
             for i in range(length):
-                if C.WalkMap[self.X+1][self.Y][2] == False:
+                if C.WalkMap[self.X+1][self.Y] == 0:
+                    
+                    C.WalkMap[self.X][self.Y] = 0
                     self.X += 1
+                    C.WalkMap[self.X][self.Y] = 1
                     
     def Die(self):
         print('I died for your sins')
@@ -122,14 +137,9 @@ class droid:
         C.WalkMap[self.X][self.Y] = 1
 
     def MoveTo(self,x,y):
-        cords = Func.FindPath(C.WalkMap,self.X,self.Y,x,y)
+        direction = Func.FindPath(C.WalkMap,self.X,self.Y,x,y)
+        self.Move(direction)
         
-        #не стоит ли кто в целевой клетке
-        if C.WalkMap[cords[0]][cords[1]] == False:
-            
-            self.X = cords[0]
-            self.Y = cords[1]
-           
            
     def Turn(self):
         if self.Mode != 'dead':
