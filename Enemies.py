@@ -7,14 +7,16 @@ class droid:
     Model = CalmDroidLeft
     Mode = 'Calm'
     Hp = 25
-    def __init__(self,X,Y):
-        self.X = X
-        self.Y = Y
-
+ 
     Far = 5 # Константы
     Close = 2
     
     IsFar = IsClose = LineUp = None
+    
+    def __init__(self,X,Y,Id):
+        self.X = X
+        self.Y = Y
+        self.Id = Id
 
     def Evaluate(self):
         Radius = sqrt((self.X-C.HumieX)**2 + (self.Y-C.HumieY)**2)
@@ -43,45 +45,39 @@ class droid:
         C.Misc.append(Bullet(self.X,self.Y,direction,10))
         
     def Move(self,direction,length = 1, attack = False):
-        if direction == '8':
+        C.WalkMap[self.X][self.Y] = 0
+        C.IdMap[self.X][self.Y] = 0
+        
+        if direction == 'up':
             if attack: self.Attack('up')
             self.Model = CalmDroidUp  
             for i in range(length):
                 if C.WalkMap[self.X][self.Y-1] == 0:
-
-                    C.WalkMap[self.X][self.Y] = 0
                     self.Y -= 1
-                    C.WalkMap[self.X][self.Y] = 1
                     
-        elif direction == '2':
+        elif direction == 'down':
             if attack: self.Attack('down')
             self.Model = CalmDroidDown
             for i in range(length):
                 if C.WalkMap[self.X][self.Y+1] == 0:
-                    
-                    C.WalkMap[self.X][self.Y] = 0
                     self.Y += 1
-                    C.WalkMap[self.X][self.Y] = 1
-                    
-        elif direction == '4':
+                                        
+        elif direction == 'left':
             if attack: self.Attack('left')
             self.Model = CalmDroidLeft
             for i in range(length):
-                if C.WalkMap[self.X-1][self.Y] == 0:
-
-                    C.WalkMap[self.X][self.Y] = 0
+                if C.WalkMap[self.X-1][self.Y] == 0:   
                     self.X -= 1
-                    C.WalkMap[self.X][self.Y] = 1
-                    
-        elif direction == '6':
+                                        
+        elif direction == 'right':
             if attack: self.Attack('right')
             self.Model = CalmDroidRight
             for i in range(length):
                 if C.WalkMap[self.X+1][self.Y] == 0:
-                    
-                    C.WalkMap[self.X][self.Y] = 0
                     self.X += 1
-                    C.WalkMap[self.X][self.Y] = 1
+                    
+        C.WalkMap[self.X][self.Y] = 1
+        C.IdMap[self.X][self.Y] = self.Id          
                     
     def Die(self):
         print('I died for your sins')
@@ -90,19 +86,17 @@ class droid:
         self.Model = DeadDroidLeft
         C.WalkMap[self.X][self.Y] = 0
         
-    def GetHit(self,x,y,power):
-        if self.X == x and self.Y == y:
-            print('Getting Hit! Hp =', self.Hp)
-            text = 'Getting Hit! Hp =' + str(self.Hp)
-            Game.Msg(text)
-            self.Hp -= power
-            if self.Hp <= 0:
-               self.Die() 
+    def GetHit(self,power):
+        print('Getting Hit! Hp =', self.Hp)
+        text = 'Getting Hit! Hp =' + str(self.Hp)
+        Game.Msg(text)
+        self.Hp -= power
+        if self.Hp <= 0:
+           self.Die() 
                
     # ----- Complex actions ----- #
           
     def MoveInLine(self,TargetX,TargetY):
-        C.WalkMap[self.X][self.Y] = 0
          # Если расстояние до цели по иксу меньше чем по игреку
         if abs(TargetX - self.X) < abs(TargetY - self.Y):
             # Если цель правее / левее
@@ -134,7 +128,6 @@ class droid:
                 else:
                     self.Move('left',0,True)
                         
-        C.WalkMap[self.X][self.Y] = 1
 
     def MoveTo(self,x,y):
         direction = Func.FindPath(C.WalkMap,self.X,self.Y,x,y)
