@@ -132,32 +132,31 @@ def Loop():
                 if event.key == pygame.K_RIGHT:
                     Player.Move('right')
                         
-                if event.key == pygame.K_LEFT:
+                elif event.key == pygame.K_LEFT:
                     Player.Move('left')
                       
-                if event.key == pygame.K_UP:
+                elif event.key == pygame.K_UP:
                     Player.Move('up')
                         
-                if event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_DOWN:
                     Player.Move('down')
                     
                     
-                if event.key == pygame.K_SPACE:
+                elif event.key == pygame.K_SPACE:
                     C.Move = True
                     if C.Humie == HumieLeft:
-                        for Bot in C.Bots:
-                            Bot.GetHit(C.HumieX-1,C.HumieY,30)
-                    if C.Humie == HumieRight:
-                        for Bot in C.Bots:
-                            Bot.GetHit(C.HumieX+1,C.HumieY,30)
-                    if C.Humie == HumieUp:
-                        for Bot in C.Bots:
-                            Bot.GetHit(C.HumieX,C.HumieY-1,30)
-                    if C.Humie == HumieDown:
-                        for Bot in C.Bots:
-                            Bot.GetHit(C.HumieX,C.HumieY+1,30) 
+                        Player.Attack('left')
+                        
+                    elif C.Humie == HumieRight:
+                        Player.Attack('right')
+                        
+                    elif C.Humie == HumieUp:
+                        Player.Attack('up')
+                        
+                    elif C.Humie == HumieDown:
+                        Player.Attack('down') 
                     
-                if event.key == pygame.K_ESCAPE:
+                elif event.key == pygame.K_ESCAPE:
                     menu = Menu('pause')
                     if menu == 0: pass
                     if menu == 1: return(0)   
@@ -165,7 +164,7 @@ def Loop():
             
             # Calculating enviroment reaction  
             if C.Move == True:
-            
+                print(C.IdMap)
                 for Bot in C.Bots:
                     Bot.Turn()
                 for Misc in C.Misc:
@@ -179,7 +178,8 @@ def Loop():
             
             # Drawing things
             Draw.Map()
-            #Draw.WalkMap()
+            Draw.WalkMap()
+            
             
             #input()
             Draw.Model(C.Humie,C.HumieX,C.HumieY)
@@ -199,20 +199,22 @@ def Loop():
         
 
 # Create an enemy of chosen type
-def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1)): # Spawn Enemy in x,y
+def Spawn(EnemyType, x=randint(0,AreaX-1), y=randint(0,AreaY-1), Id = 'Null'): # Spawn Enemy in x,y
     if EnemyType == 'Droid':
         Enemy = Enemies.droid
-        C.Bots.append(Enemy(x,y))            
+        C.Bots.append(Enemy(x,y,Id))            
 
 # Creating a bunch of enemies for testing                
 for k in range(1,9):
-    Spawn('Droid', k+2,k+2)
+    Spawn('Droid', k+2,k+2,k)
+    C.IdMap[k+2][k+2] = k
 
 
 # Запуск
 while True:
     menu = Menu('main')
     if menu == 0:
+        print(C.IdMap)
         Loop()
     elif menu == 1:
         menu == Menu('set')
