@@ -143,10 +143,10 @@ def FindPath(Map,x1,y1,x2,y2,ReturnLen = False,Str = True):
 ##        print(i)
 
     if Str == True:
-        if List[1][1] - List[0][1] == -1: return('8')
-        elif List[1][0] - List[0][0] == -1: return('4')
-        elif List[1][1] - List[0][1] == 1: return('2')
-        elif List[1][0] - List[0][0] == 1: return('6')
+        if List[1][1] - List[0][1] == -1: return('up')
+        elif List[1][0] - List[0][0] == -1: return('left')
+        elif List[1][1] - List[0][1] == 1: return('down')
+        elif List[1][0] - List[0][0] == 1: return('right')
     else:
         return(List[1])
     
