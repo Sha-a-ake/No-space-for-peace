@@ -143,18 +143,11 @@ def Loop():
                     
                     
                 elif event.key == pygame.K_SPACE:
-                    C.Move = True
-                    if C.Humie == HumieLeft:
-                        Player.Attack('left')
+                    Player.Attack() 
                         
-                    elif C.Humie == HumieRight:
-                        Player.Attack('right')
-                        
-                    elif C.Humie == HumieUp:
-                        Player.Attack('up')
-                        
-                    elif C.Humie == HumieDown:
-                        Player.Attack('down') 
+                elif event.key == pygame.K_LCTRL:
+                    Player.Shoot()
+
                     
                 elif event.key == pygame.K_ESCAPE:
                     menu = Menu('pause')
@@ -164,11 +157,11 @@ def Loop():
             
             # Calculating enviroment reaction  
             if C.Move == True:
-                print(C.IdMap)
                 for Bot in C.Bots:
                     Bot.Turn()
                 for Misc in C.Misc:
                     Misc.Move()
+                for Misc in C.Misc:
                     if Misc.Alive == False:
                         C.Misc.remove(Misc)
 
@@ -178,7 +171,7 @@ def Loop():
             
             # Drawing things
             Draw.Map()
-            Draw.WalkMap()
+            #Draw.WalkMap()
             
             
             #input()
@@ -214,7 +207,6 @@ for k in range(1,9):
 while True:
     menu = Menu('main')
     if menu == 0:
-        print(C.IdMap)
         Loop()
     elif menu == 1:
         menu == Menu('set')

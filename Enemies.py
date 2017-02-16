@@ -6,7 +6,7 @@ from math import sqrt
 class droid:
     Model = CalmDroidLeft
     Mode = 'Calm'
-    Hp = 25
+    Hp = 125
  
     Far = 5 # Константы
     Close = 2
@@ -35,7 +35,7 @@ class droid:
 
         
     #-----  Basic functions ----- #  
-      
+    
     def Draw(self):
         global DISPLAY
         DISPLAY.blit(self.Model,((self.X+1)*TileSize,(self.Y+1)*TileSize))    
@@ -80,7 +80,6 @@ class droid:
         C.IdMap[self.X][self.Y] = self.Id          
                     
     def Die(self):
-        print('I died for your sins')
         Game.Msg('I died for your sins')
         self.Mode = 'dead'
         self.Model = DeadDroidLeft
@@ -88,7 +87,6 @@ class droid:
         C.IdMap[self.X][self.Y] = 0
         
     def GetHit(self,power):
-        print('Getting Hit! Hp =', self.Hp)
         text = 'Getting Hit! Hp =' + str(self.Hp)
         Game.Msg(text)
         self.Hp -= power

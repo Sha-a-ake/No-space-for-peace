@@ -1,5 +1,6 @@
 import Config as C
 from Images import *
+import Misc
 
 def Move(direction):
     C.Move = True
@@ -25,14 +26,20 @@ def Move(direction):
 
     C.WalkMap[C.HumieX][C.HumieY] = 3
             
-def Attack(direction):
-    print(C.IdMap[C.HumieX][C.HumieY])
+def Attack():
     C.Move = True
-    if direction == 'up':       Id = C.IdMap[C.HumieX][C.HumieY -1]
-    elif direction == 'down':   Id = C.IdMap[C.HumieX][C.HumieY +1] 
-    elif direction == 'right':  Id = C.IdMap[C.HumieX +1][C.HumieY]
-    elif direction == 'left':   Id = C.IdMap[C.HumieX -1][C.HumieY]
-    
+    if C.Humie == HumieLeft:    Id = C.IdMap[C.HumieX -1][C.HumieY]              
+    elif C.Humie == HumieRight: Id = C.IdMap[C.HumieX +1][C.HumieY]                
+    elif C.Humie == HumieUp:    Id = C.IdMap[C.HumieX][C.HumieY -1]
+    elif C.Humie == HumieDown:  Id = C.IdMap[C.HumieX][C.HumieY +1] 
     if Id:
-        C.Bots[Id-1].GetHit(10)
-    
+        C.Bots[Id-1].GetHit(250)
+   
+def Shoot():
+    C.Move = True
+    if C.Humie == HumieLeft:    direction = 'left'              
+    elif C.Humie == HumieRight: direction = 'right'                
+    elif C.Humie == HumieUp:    direction = 'up'
+    elif C.Humie == HumieDown:  direction = 'down'
+    Bullet = Misc.bullet
+    C.Misc.append(Bullet(C.HumieX,C.HumieY,direction,10,True))
