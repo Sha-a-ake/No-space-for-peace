@@ -17,8 +17,7 @@ class bullet:
         if direction == 'up' or direction == 'down': self.Model = BulletVer
     
     def Impact(self):
-        if   C.WalkMap[self.x][self.y] == 2: self.Alive = False
-        elif self.x == C.HumieX and self.y == C.HumieY and self.PlayerOwned == False:
+        if self.x == C.HumieX and self.y == C.HumieY and self.PlayerOwned == False:
             print('Hit!')
         elif self.PlayerOwned and C.IdMap[self.x][self.y]:
             C.Bots[C.IdMap[self.x][self.y] - 1].GetHit(10) 
@@ -26,17 +25,18 @@ class bullet:
         
           
     def Move(self):
-        if self.Alive == True:
-            self.Impact()
-            if   self.direction == 'up':
-                self.y -= 1
-            elif self.direction == 'down':
-                self.y += 1
-            elif self.direction == 'right':
-                self.x += 1
-            elif self.direction == 'left':
-                self.x -= 1
-            self.Impact()
+        self.Impact()
+        if   self.direction == 'up' and C.WalkMap[self.x][self.y-1] != 2:
+            self.y -= 1
+        elif self.direction == 'down' and C.WalkMap[self.x][self.y+1] != 2:
+            self.y += 1
+        elif self.direction == 'right' and C.WalkMap[self.x+1][self.y] != 2:
+            self.x += 1
+        elif self.direction == 'left' and C.WalkMap[self.x-1][self.y] != 2:
+            self.x -= 1
+        else:
+            self.Alive = False
+        self.Impact()
 
     def Draw(self):
         DISPLAY.blit(self.Model,((self.x+1)*TileSize, (self.y+1)*TileSize))
