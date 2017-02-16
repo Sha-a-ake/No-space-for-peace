@@ -25,19 +25,14 @@ def Move(direction):
 
     C.WalkMap[C.HumieX][C.HumieY] = 3
             
-    def Attack():
-        C.Move = True
-        if C.Humie == HumieLeft:
-            for Bot in C.Bots:
-                Bot.GetHit(C.HumieX-1,C.HumieY,30)
-        if C.Humie == HumieRight:
-            for Bot in C.Bots:
-                Bot.GetHit(C.HumieX+1,C.HumieY,30)
-        if C.Humie == HumieUp:
-            for Bot in C.Bots:
-                Bot.GetHit(C.HumieX,C.HumieY-1,30)
-        if C.Humie == HumieDown:
-            for Bot in C.Bots:
-                Bot.GetHit(C.HumieX,C.HumieY+1,30)    
-    def hi():
-        print('hi')   
+def Attack(direction):
+    print(C.IdMap[C.HumieX][C.HumieY])
+    C.Move = True
+    if direction == 'up':       Id = C.IdMap[C.HumieX][C.HumieY -1]
+    elif direction == 'down':   Id = C.IdMap[C.HumieX][C.HumieY +1] 
+    elif direction == 'right':  Id = C.IdMap[C.HumieX +1][C.HumieY]
+    elif direction == 'left':   Id = C.IdMap[C.HumieX -1][C.HumieY]
+    
+    if Id:
+        C.Bots[Id-1].GetHit(10)
+    
