@@ -85,6 +85,7 @@ class droid:
         self.Mode = 'dead'
         self.Model = DeadDroidLeft
         C.WalkMap[self.X][self.Y] = 0
+        C.IdMap[self.X][self.Y] = 0
         
     def GetHit(self,power):
         print('Getting Hit! Hp =', self.Hp)
