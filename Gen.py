@@ -48,12 +48,11 @@ def Create_Map(x,y):
         C.TileMap.append(TileLine)
         C.WalkMap.append(PathLine)
         C.IdMap.append(IdLine)
-
+    
     for i in range(x):
         for j in range(y):
             if i == x-1 or j == 0 or j == y-1 or i == 0:
                 C.TileMap[i][j] = 21
                 C.WalkMap[i][j] = 2
-                C.IdMap[i][j] = 2
                 
                 
