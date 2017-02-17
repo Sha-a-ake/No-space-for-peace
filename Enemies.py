@@ -11,7 +11,7 @@ class droid:
     Far = 5 # Константы
     Close = 2
     
-    IsFar = IsClose = LineUp = None
+    IsFar = IsClose = LineUp = Near = None
     
     def __init__(self,X,Y,Id):
         self.X = X
@@ -24,6 +24,9 @@ class droid:
         elif Radius <= self.Close: self.IsClose = True
         else: self.IsFar = False; self.IsClose = False
 
+        if Radius <= 1.5: self.Near = True
+        else: self.Near = False
+
         if self.X == C.HumieX:
             if self.Y < C.HumieY: self.LineUp = 2
             else: self.LineUp = 8
@@ -31,6 +34,7 @@ class droid:
             if self.X < C.HumieX: self.LineUp = 6
             else: self.LineUp = 4
         else: self.LineUp = 0
+        
         
 
         
@@ -137,8 +141,8 @@ class droid:
         if self.Mode != 'dead':
             self.Evaluate()
 ##            self.MoveInLine(C.HumieX,C.HumieY)
-            if self.IsFar != True:
-                self.MoveTo(C.HumieX,C.HumieY)
+            if self.IsFar != True: pass
+                #self.MoveTo(C.HumieX,C.HumieY)
             self.Evaluate()
       
                 
