@@ -171,7 +171,7 @@ def Loop():
             
             # Drawing things
             Draw.Map()
-            Draw.WalkMap()
+            #Draw.WalkMap()
             
             
             #input()
